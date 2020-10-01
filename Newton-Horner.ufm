@@ -1,0 +1,410 @@
+NewtonHorner3 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - 1
+  f1 = z1^3 - 1
+  f2 = z2^3 - 1
+  d = 3*z^2
+  d1 = 3*z1^2
+  d2 = 3*z2^2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - (f/d)*(1 / (1 - (f/d) * ((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - (f1/d1)*(1 / (1 - (f1/d1) * ((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - (f2/d2)*(1 / (1 - (f2/d2) * ((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Newton-Horner 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Newton-Horner method."
+  endparam
+}
+
+
+NewtonHorner4 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+  z3 = pixel * a^3
+loop:
+  f = z^4 - 1
+  f1 = z1^4 - 1
+  f2 = z2^4 - 1
+  f3 = z3^4 - 1
+  d = 4*z^3
+  d1 = 4*z1^3
+  d2 = 4*z2^3
+  d3 = 4*z3^3
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  zold3 = z3
+  r = z - (f/d)*(1 / (1 - (f/d) * ((1/(z-z1))+(1/(z-z2))+(1/(z-z3)))))
+  r1 = z1 - (f1/d1)*(1 / (1 - (f1/d1) * ((1/(z1-z))+(1/(z1-z2))+(1/(z1-z3)))))
+  r2 = z2 - (f2/d2)*(1 / (1 - (f2/d2) * ((1/(z2-z))+(1/(z2-z1))+(1/(z-z3)))))
+  r3 = z3 - (f3/d3)*(1 / (1 - (f3/d3) * ((1/(z3-z))+(1/(z3-z1))+(1/(z3-z2)))))
+  z = r
+  z1 = r1
+  z2 = r2
+  z3 = r3
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout || |z3 - zold3| >= @bailout
+default:
+  title = "Newton-Horner 4"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Newton-Horner method."
+  endparam
+}
+
+NewtonHornerG3 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - 2*z + 2
+  f1 = z1^3 - 2*z1 + 2
+  f2 = z2^3 - 2*z2 + 2
+  d = 3*z^2
+  d1 = 3*z1^2
+  d2 = 3*z2^2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - (f/d)*(1 / (1 - (f/d) * ((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - (f1/d1)*(1 / (1 - (f1/d1) * ((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - (f2/d2)*(1 / (1 - (f2/d2) * ((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Newton-Horner Generalized 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Newton-Horner method."
+  endparam
+}
+
+NewtonHornerG8 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+  z3 = pixel * a^3
+  z4 = pixel * a^4
+  z5 = pixel * a^5
+  z6 = pixel * a^6
+  z7 = pixel * a^7
+loop:
+  f = z^8 + 15*z^4 - 16
+  f1 = z1^8 + 15*z1^4 - 16
+  f2 = z2^8 + 15*z2^4 - 16
+  f3 = z3^8 + 15*z3^4 - 16
+  f4 = z4^8 + 15*z4^4 - 16
+  f5 = z5^8 + 15*z5^4 - 16
+  f6 = z6^8 + 15*z6^4 - 16
+  f7 = z7^8 + 15*z7^4 - 16
+  d = 8*z^7 + 60*z^3
+  d1 = 8*z1^7 + 60*z1^3
+  d2 = 8*z2^7 + 60*z2^3
+  d3 = 8*z3^7 + 60*z3^3
+  d4 = 8*z4^7 + 60*z4^3
+  d5 = 8*z5^7 + 60*z5^3
+  d6 = 8*z6^7 + 60*z6^3
+  d7 = 8*z7^7 + 60*z7^3
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  zold3 = z3
+  zold4 = z4
+  zold5 = z5
+  zold6 = z6
+  zold7 = z7
+  r = z - (f/d)*(1 / (1 - (f/d) * ((1/(z-z1))+(1/(z-z2))+(1/(z-z3))+(1/(z-z4))+(1/(z-z5))+(1/(z-z6))+(1/(z-z7)))))
+  r1 = z1 - (f1/d1)*(1 / (1 - (f1/d1) * ((1/(z1-z))+(1/(z1-z2))+(1/(z1-z3))+(1/(z1-z4))+(1/(z1-z5))+(1/(z1-z6))+(1/(z1-z7)))))
+  r2 = z2 - (f2/d2)*(1 / (1 - (f2/d2) * ((1/(z2-z))+(1/(z2-z1))+(1/(z2-z3))+(1/(z2-z4))+(1/(z2-z5))+(1/(z2-z6))+(1/(z2-z7)))))
+  r3 = z3 - (f3/d3)*(1 / (1 - (f3/d3) * ((1/(z3-z))+(1/(z3-z1))+(1/(z3-z2))+(1/(z3-z4))+(1/(z3-z5))+(1/(z3-z6))+(1/(z3-z7)))))
+  r4 = z4 - (f4/d4)*(1 / (1 - (f4/d4) * ((1/(z4-z))+(1/(z4-z1))+(1/(z4-z2))+(1/(z4-z3))+(1/(z4-z5))+(1/(z4-z6))+(1/(z4-z7)))))
+  r5 = z5 - (f5/d5)*(1 / (1 - (f5/d5) * ((1/(z5-z))+(1/(z5-z1))+(1/(z5-z2))+(1/(z5-z3))+(1/(z5-z4))+(1/(z5-z6))+(1/(z5-z7)))))
+  r6 = z6 - (f6/d6)*(1 / (1 - (f6/d6) * ((1/(z6-z))+(1/(z6-z1))+(1/(z6-z2))+(1/(z6-z3))+(1/(z6-z4))+(1/(z6-z5))+(1/(z6-z7)))))
+  r7 = z7 - (f7/d7)*(1 / (1 - (f7/d7) * ((1/(z7-z))+(1/(z7-z1))+(1/(z7-z2))+(1/(z7-z3))+(1/(z7-z4))+(1/(z7-z5))+(1/(z7-z6)))))
+  z = r
+  z1 = r1
+  z2 = r2
+  z3 = r3
+  z4 = r4
+  z5 = r5
+  z6 = r6
+  z7 = r7
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout || |z3 - zold3| >= @bailout || |z4 - zold4| >= @bailout || |z5 - zold5| >= @bailout || |z6 - zold6| >= @bailout || |z7 - zold7| >= @bailout
+default:
+  title = "Newton-Horner Generalized 8"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Newton-Horner method."
+  endparam
+}
+
+NewtonHorner5 {
+;
+; Example polynomial used from Oscar Veliz's video on Horner's method
+;
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+  z3 = pixel * a^3
+  z4 = pixel * a^4
+loop:
+  f = z^5 - 8*z^4 - 72*z^3 + 382*z^2 + 727*z - 2310
+  f1 = z1^5 - 8*z1^4 - 72*z1^3 + 382*z1^2 + 727*z1 - 2310
+  f2 = z2^5 - 8*z2^4 - 72*z2^3 + 382*z2^2 + 727*z2 - 2310
+  f3 = z3^5 - 8*z3^4 - 72*z3^3 + 382*z3^2 + 727*z3 - 2310
+  f4 = z4^5 - 8*z4^4 - 72*z4^3 + 382*z4^2 + 727*z4 - 2310
+  d = 5*z^4 - 32*z^3 - 216*z^2 + 764*z + 727
+  d1 = 5*z1^4 - 32*z1^3 - 216*z1^2 + 764*z1 + 727
+  d2 = 5*z2^4 - 32*z2^3 - 216*z2^2 + 764*z2 + 727
+  d3 = 5*z3^4 - 32*z3^3 - 216*z3^2 + 764*z3 + 727
+  d4 = 5*z4^4 - 32*z4^3 - 216*z4^2 + 764*z4 + 727
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  zold3 = z3
+  zold4 = z4
+  r = z - (f/d)*(1 / (1 - (f/d) * ((1/(z-z1))+(1/(z-z2))+(1/(z-z3))+(1/(z-z4)))))
+  r1 = z1 - (f1/d1)*(1 / (1 - (f1/d1) * ((1/(z1-z))+(1/(z1-z2))+(1/(z1-z3))+(1/(z1-z4)))))
+  r2 = z2 - (f2/d2)*(1 / (1 - (f2/d2) * ((1/(z2-z))+(1/(z2-z1))+(1/(z-z3))+(1/(z2-z4)))))
+  r3 = z3 - (f3/d3)*(1 / (1 - (f3/d3) * ((1/(z3-z))+(1/(z3-z1))+(1/(z3-z2))+(1/(z3-z4)))))
+  r4 = z4 - (f3/d3)*(1 / (1 - (f3/d3) * ((1/(z4-z))+(1/(z4-z1))+(1/(z4-z2))+(1/(z4-z3)))))
+  z = r
+  z1 = r1
+  z2 = r2
+  z3 = r3
+  z4 = r4
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout || |z3 - zold3| >= @bailout || |z4 - zold4| >= @bailout
+default:
+  title = "Newton-Horner (z^5 - 8z^4 - 72z^3 + 382z^2 + 727z - 2310)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Newton-Horner method."
+  endparam
+}
+
+NewtonHorner3_1 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - z^2 - z - 1
+  f1 = z1^3 - z1^2 - z1 - 1
+  f2 = z2^3 - z2^2 - z2 - 1
+  d = 3*z^2 - 2*z - 1
+  d1 = 3*z1^2 - 2*z1 - 1
+  d2 = 3*z2^2 - 2*z2 - 1
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - (f/d)*(1 / (1 - (f/d) * ((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - (f1/d1)*(1 / (1 - (f1/d1) * ((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - (f2/d2)*(1 / (1 - (f2/d2) * ((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Newton-Horner (z^3 - z^2 - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Newton-Horner method."
+  endparam
+}
+
+HalleyHorner3 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - 1
+  f1 = z1^3 - 1
+  f2 = z2^3 - 1
+  d = 3*z^2
+  d1 = 3*z1^2
+  d2 = 3*z2^2
+  dd = 6*z
+  dd1 = 6*z1
+  dd2 = 6*z2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  w = (2*f*d)/(2*(d)^2 - f * dd)
+  w1 = (2*f1*d1)/(2*(d1)^2 - f1 * dd1)
+  w2 = (2*f2*d2)/(2*(d2)^2 - f2 * dd2)
+  r = z - w*(1 / (1 - w * ((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - w1*(1 / (1 - w1 * ((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - w2*(1 / (1 - w2 * ((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Halley-Horner 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Newton-Horner method."
+  endparam
+}

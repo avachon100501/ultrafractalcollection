@@ -1,0 +1,268 @@
+AberthEhrlich3_1 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - z^2 - z - 1
+  f1 = z1^3 - z1^2 - z1 - 1
+  f2 = z2^3 - z2^2 - z2 - 1
+  d = 3*z^2 - 2*z - 1
+  d1 = 3*z1^2 - 2*z1 - 1
+  d2 = 3*z2^2 - 2*z2 - 1
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - ((f/d) / (1-(f/d)*((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - ((f1/d1) / (1-(f1/d1)*((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - ((f2/d2) / (1-(f2/d2)*((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Aberth-Ehrlich (z^3 - z^2 - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Aberth-Ehrlich method."
+  endparam
+}
+
+AberthEhrlich3 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - 1
+  f1 = z1^3 - 1
+  f2 = z2^3 - 1
+  d = 3*z^2
+  d1 = 3*z1^2
+  d2 = 3*z2^2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - ((f/d) / (1-(f/d)*((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - ((f1/d1) / (1-(f1/d1)*((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - ((f2/d2) / (1-(f2/d2)*((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Aberth-Ehrlich 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Aberth-Ehrlich method."
+  endparam
+}
+
+
+AberthEhrlichHalley3_1 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - z^2 - z - 1
+  f1 = z1^3 - z1^2 - z1 - 1
+  f2 = z2^3 - z2^2 - z2 - 1
+  d = 3*z^2 - 2*z - 1
+  d1 = 3*z1^2 - 2*z1 - 1
+  d2 = 3*z2^2 - 2*z2 - 1
+  dd = 6*z - 2
+  dd1 = 6*z1 - 2
+  dd2 = 6*z2 - 2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  w = (2*f*d)/(2*(d)^2 - f * dd)
+  w1 = (2*f1*d1)/(2*(d1)^2 - f1 * dd1)
+  w2 = (2*f2*d2)/(2*(d2)^2 - f2 * dd2)
+  r = z - (w / (1-w*((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - (w1 / (1-w1*((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - (w2 / (1-w2*((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Aberth-Ehrlich-Halley (z^3 - z^2 - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Aberth-Ehrlich method."
+  endparam
+}
+
+AberthEhrlichHalley3 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - 1
+  f1 = z1^3 - 1
+  f2 = z2^3 - 1
+  d = 3*z^2
+  d1 = 3*z1^2
+  d2 = 3*z2^2
+  dd = 6*z
+  dd1 = 6*z1
+  dd2 = 6*z2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  w = (2*f*d)/(2*(d)^2 - f * dd)
+  w1 = (2*f1*d1)/(2*(d1)^2 - f1 * dd1)
+  w2 = (2*f2*d2)/(2*(d2)^2 - f2 * dd2)
+  r = z - (w / (1-w*((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - (w1 / (1-w1*((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - (w2 / (1-w2*((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Aberth-Ehrlich-Halley 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Aberth-Ehrlich method."
+  endparam
+}
+
+AberthEhrlichSchroder3_1 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - z^2 - z - 1
+  f1 = z1^3 - z1^2 - z1 - 1
+  f2 = z2^3 - z2^2 - z2 - 1
+  d = 3*z^2 - 2*z - 1
+  d1 = 3*z1^2 - 2*z1 - 1
+  d2 = 3*z2^2 - 2*z2 - 1
+  dd = 6*z - 2
+  dd1 = 6*z1 - 2
+  dd2 = 6*z2 - 2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  w = (f*d)/((d)^2 - f * dd)
+  w1 = (f1*d1)/((d1)^2 - f1 * dd1)
+  w2 = (f2*d2)/((d2)^2 - f2 * dd2)
+  r = z - (w / (1-w*((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 - (w1 / (1-w1*((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 - (w2 / (1-w2*((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Aberth-Ehrlich-Schroder (z^3 - z^2 - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Aberth-Ehrlich method."
+  endparam
+}

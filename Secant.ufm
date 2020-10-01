@@ -1,0 +1,393 @@
+Secant3 {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = oz^3 - 1
+  fz = z^3 - 1
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant 3"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+  
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+Secant4 {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = oz^4 - 1
+  fz = z^4 - 1
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant 4"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+SecantG3 {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = oz^3 - 2*oz + 2
+  fz = z^3 - 2*z + 2
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant Generalized 3"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+SecantG8 {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = oz^8 + 15*oz^4 - 16
+  fz = z^8 + 15*z^4 - 16
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant Generalized 8"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+Secant_z2 {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = (oz^2 - 1)*(oz^2 - 4)
+  fz = (z^2 - 1)*(z^2 - 4)
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant ((z^2 - 1)(z^2 - 4))"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+SecantCos {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = cos(oz)
+  fz = cos(z)
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant (Cosine function)"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+Secant3_1 {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = oz^3 - oz^2 - oz - 1
+  fz = z^3 - z^2 - z - 1
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant (z^3 - z^2 - z - 1)"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+Secant_Poly {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = @a10*oz^10 + @a9*oz^9 + @a8*oz^8 + @a7*oz^7 + @a6*oz^6 + @a5*oz^5 + @a4*oz^4 + @a3*oz^3 + @a2*oz^2 + @a1*oz + @a0
+  fz = @a10*z^10 + @a9*z^9 + @a8*z^8 + @a7*z^7 + @a6*z^6 + @a5*z^5 + @a4*z^4 + @a3*z^3 + @a2*z^2 + @a1*z + @a0
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant Polynomial"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+
+  param a10
+    default = (0, 0)
+  endparam
+  param a9
+    default = (0, 0)
+  endparam
+  param a8
+    default = (0, 0)
+  endparam
+  param a7
+    default = (0, 0)
+  endparam
+  param a6
+    default = (0, 0)
+  endparam
+  param a5
+    default = (0, 0)
+  endparam
+  param a4
+    default = (0, 0)
+  endparam
+  param a3
+    default = (1, 0)
+  endparam
+  param a2
+    default = (0, 0)
+  endparam
+  param a1
+    default = (0, 0)
+  endparam
+  param a0
+    default = (-1, 0)
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+SecantCos {
+init:
+  z = #pixel
+  oz = p1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex p1
+  oldz = z
+  fzd = cos(oz)
+  fz = cos(z)
+  z = z - fz * (z - oz) / (fz - fzd)
+  oz = oldz
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Secant (Cosine function)"
+  maxiter = 1000
+
+  param p1
+    caption = "Start"
+    default = 0
+    hint = "Start value for oz."
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}

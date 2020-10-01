@@ -1,0 +1,63 @@
+Secant3_1 {
+init:
+  z = #pixel
+  a = p1
+  b = p2
+  i = sqrt(-1)
+loop:
+  oldz = z
+  oldb = z
+  fa = (a + 3)*(a - 1)^2
+  fb = (b + 3)*(b - 1)^2
+  foldb = (oldb + 3)*(oldb - 1)^2
+  m = (a + b)/2
+  if (|fa| < |fb|)
+     b = a
+     a = b
+  endif
+  z = a
+  fs = (s + 3)*(s - 1)^2
+  repeat, until (fb == 0) || (fs == 0) || (|b - a| > @bailout)
+  if (fb != foldb)
+     s = (a*fb*fz)/((fa-fb)*(fa-fz)) + (b*fa*fz)/((fb-fa)*(fb-fz)) + (z*fa*fb)/((fz-fa)*(fz-fb))
+  else
+     s = b - fb * (b - a)/(fb - fa)
+  endif
+  if (m < s < b)
+     b = s
+  else
+     b = m
+  endif
+
+
+bailout:
+  |fz| > @bailout
+
+default:
+  title = "Dekker ((z + 3)(z - 1)^2)"
+  maxiter = 1000
+
+  param p1
+    caption = "a value"
+    default = -4.0
+    hint = "Start value for a."
+  endparam
+
+  param p2
+    caption = "b value"
+    default = 1.33333333333
+    hint = "Start value for b."
+  endparam
+
+  param relax
+    caption = "Relaxation factor"
+    default = 1.0
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}

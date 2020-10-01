@@ -1,0 +1,53 @@
+NewtonMaehly3 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - 1
+  f1 = z1^3 - 1
+  f2 = z2^3 - 1
+  d = 3*z^2
+  d1 = 3*z1^2
+  d2 = 3*z2^2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z + (1 / ((d/f) - ((1/(z-z1))+(1/(z-z2)))))
+  r1 = z1 + (1 / ((d1/f1) - ((1/(z1-z))+(1/(z1-z2)))))
+  r2 = z2 + (1 / ((d2/f2) - ((1/(z2-z))+(1/(z2-z1)))))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Newton-Maehly 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Newton-Maehly Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Newton-Maehly method."
+  endparam
+}
+

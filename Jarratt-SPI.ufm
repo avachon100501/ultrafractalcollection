@@ -1,0 +1,207 @@
+JarrattSPI4 {
+init:
+  z = pixel
+  znm2 = p2
+  znm1 = p1
+  x = real(z)
+  y = imag(z)
+  dist = sqrt(x*x+y*y)
+  r = 2
+  i = sqrt(-1)
+  invphi = (1 + sqrt(5)) / (2 - 1)
+  ratio = (3 - sqrt(5)) / 2
+loop:
+  fz2 = znm2^4/4 - znm2
+  fz1 = znm1^4/4 - znm1
+  fz = z^4/4 - z
+  z = znm1 - 0.5 * ((znm1 - znm2)^2*(fz1 - fz)-(znm1 - z)^2*(fz1 - fz2))/((znm1 - znm2)*(fz1 - fz)-(znm1 - z)*(fz1 - fz2))
+  znm2 = znm1
+  znm1 = z
+bailout:
+  |z - znm1| >= @bailout
+
+default:
+  title = "Jarratt (Successive Parabolic Interpolation) 4"
+  maxiter = 1000
+
+  param p1
+    caption = "1st start value"
+    default = 1.5
+    hint = "Start value for znm1."
+  endparam
+
+  param p2
+    caption = "2nd start value"
+    default = 2.0
+    hint = "Start value for znm2."
+  endparam
+
+  param p3
+    caption = "3rd start value"
+    default = 1.75
+    hint = "Start value for znm3."
+  endparam
+
+  param p4
+    caption = "4th start value"
+    default = 3.0
+    hint = "Start value for znm4."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+Jarratt1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - 1
+  f1 = 3*z^2
+  u = f/f1
+  f11 = 3*(z - 0.5*u)^2
+  z = z - f/f11
+bailout:
+  |z - zold| >= @bailout
+
+default:
+  title = "Jarratt 1"
+  maxiter = 1000
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+Jarratt2 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - 1
+  f1 = 3*z^2
+  u = f/f1
+  f11 = 4*(f1 + 3*(3*(z - (2/3)*u)^2))
+  z = z - f/f11
+bailout:
+  |z - zold| >= @bailout
+
+default:
+  title = "Jarratt 2"
+  maxiter = 1000
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+Jarratt3 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - 1
+  f1 = 3*z^2
+  y = z - (2/3)*f/f1
+  fy = y^3 - 1
+  fy1 = 3*y^2
+  jf = (3*fy1 + f1)/(6*fy1 - 2*f1)
+  z = z - f/((3/2)*jf*fy1 + (1 - (3/2)*jf)*f1)
+bailout:
+  |z - zold| >= @bailout
+
+default:
+  title = "Jarratt 3"
+  maxiter = 1000
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+JarrattNova1 {
+init:
+  z = 1
+  c = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - 1
+  f1 = 3*z^2
+  u = f/f1
+  f11 = 3*(z - 0.5*u)^2
+  z = z - f/f11 + c
+bailout:
+  |z - zold| >= @bailout
+
+default:
+  title = "Jarratt Nova 1"
+  maxiter = 1000
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+JarrattNova2 {
+init:
+  z = 1
+  c = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - 1
+  f1 = 3*z^2
+  u = f/f1
+  f11 = 4*(f1 + 3*(3*(z - (2/3)*u)^2))
+  z = z - f/f11 + c
+bailout:
+  |z - zold| >= @bailout
+
+default:
+  title = "Jarratt Nova 2"
+  maxiter = 1000
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+JarrattNova3 {
+init:
+  z = 1
+  c = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - 1
+  f1 = 3*z^2
+  y = z - (2/3)*f/f1
+  fy = y^3 - 1
+  fy1 = 3*y^2
+  jf = (3*fy1 + f1)/(6*fy1 - 2*f1)
+  z = z - f/((3/2)*jf*fy1 + (1 - (3/2)*jf)*f1) + c
+bailout:
+  |z - zold| >= @bailout
+
+default:
+  title = "Jarratt Nova 3"
+  maxiter = 1000
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}

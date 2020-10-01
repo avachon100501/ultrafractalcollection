@@ -1,0 +1,375 @@
+Halley3 {
+;
+; Standard Halley fractal.
+;
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - 1
+  f1 = 3*z^2
+  f2 = 6*z
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Halley4 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = z^4 - 1
+  f1 = 4*z^3
+  f2 = 12*z^2
+  zold = z
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley 4"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+HalleyG3 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = z^3 - 2*z + 2
+  f1 = 3*z^2 - 2
+  f2 = 6*z
+  zold = z
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley Generalized 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+HalleyG8 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = z^8 + 15*z^4 - 16
+  f1 = 8*z^7 + 60*z^3
+  f2 = 56*z^6 + 180*z^2
+  zold = z
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley Generalized 8"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+HalleySin {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = sin(z)
+  f1 = cos(z)
+  f2 = -sin(z)
+  zold = z
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley (Sine function)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+HalleyCos {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = cos(z)
+  f1 = -sin(z)
+  f2 = -cos(z)
+  zold = z
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley (Cosine function)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+HalleyAtan {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = atan(z)
+  f1 = 1/(z^2 + 1)
+  f2 = -((2*z)/(z^2 + 1)^2)
+  zold = z
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley (Arctangent function)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Halley3_1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = ((z^3)/3) - ((z^2)/2) - z - 1
+  f1 = z^2 - z - 1
+  f2 = 2*z - 1
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley (((z^3)/3) - ((z^2)/2) - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Halley4_1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = ((z^4)/4) - z
+  f1 = z^3 - 1
+  f2 = 3*z^2
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley (((z^4)/4) - z)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+HalleyPoly {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = @a10*z^10 + @a9*z^9 + @a8*z^8 + @a7*z^7 + @a6*z^6 + @a5*z^5 + @a4*z^4 + @a3*z^3 + @a2*z^2 + @a1*z + @a0
+  f1 = (10*@a10)*z^9 + (9*@a9)*z^8 + (8*@a8)*z^7 + (7*@a7)*z^6 + (6*@a6)*z^5 + (5*@a5)*z^4 + (4*@a4)*z^3 + (3*@a3)*z^2 + (2*@a2)*z + @a1
+  f2 = ((10*@a10)*9)*z^8 + ((9*@a9)*8)*z^7 + ((8*@a8)*7)*z^6 + ((7*@a7)*6)*z^5 + ((6*@a6)*5)*z^4 + ((5*@a5)*4)*z^3 + ((4*@a4)*3)*z^2 + ((3*@a3)*2)*z + (2*@a2)
+  z = z - (2*f*f1)/(2*f1^2 - f*f2)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Halley Polynomial"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  param a10
+    default = (0, 0)
+  endparam
+  param a9
+    default = (0, 0)
+  endparam
+  param a8
+    default = (0, 0)
+  endparam
+  param a7
+    default = (0, 0)
+  endparam
+  param a6
+    default = (0, 0)
+  endparam
+  param a5
+    default = (0, 0)
+  endparam
+  param a4
+    default = (0, 0)
+  endparam
+  param a3
+    default = (1, 0)
+  endparam
+  param a2
+    default = (0, 0)
+  endparam
+  param a1
+    default = (0, 0)
+  endparam
+  param a0
+    default = (-1, 0)
+  endparam
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}

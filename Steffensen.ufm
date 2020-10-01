@@ -1,0 +1,173 @@
+SteffensenCos {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = cos(z)
+  fa = (z + f)
+  f1a = cos(fa)
+  g = (f1a/f) - 1
+  zold = z
+  z = z - (f/g)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Steffensen (Cosine function)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  param bailout
+    caption = "Bailout value"
+    default = 0.0000000000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+SteffensenSin {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = sin(z)
+  fa = (z + f)
+  f1a = sin(fa)
+  g = (f1a/f) - 1
+  zold = z
+  z = z - (f/g)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Steffensen (Sine function)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  param bailout
+    caption = "Bailout value"
+    default = 0.00000000000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Steffensen3 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = z^3 - 1
+  fa = (z + f)
+  f1a = fa^3 - 1
+  g = (f1a/f) - 1
+  zold = z
+  z = z - (f/g)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Steffensen 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Steffensen4 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = z^4 - 1
+  fa = (z + f)
+  f1a = fa^4 - 1
+  g = (f1a/f) - 1
+  zold = z
+  z = z - (f/g)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Steffensen 4"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00000000000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+SteffensenG3 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = z^3 - 2*z + 2
+  fa = (z + f)
+  f1a = fa^3 - 2*fa + 2
+  g = (f1a/f) - 1
+  zold = z
+  z = z - (f/g)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Steffensen Generalized 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.0000000000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+

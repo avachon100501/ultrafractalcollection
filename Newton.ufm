@@ -1,0 +1,891 @@
+Newton3 {
+;
+; Standard Newton fractal.
+;
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - @relax * ((z^3 - 1)/(3 * z^2))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+Newton4 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - @relax * ((z^4 - 1)/(4 * z^3))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton 4"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+Newton5 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^5 - 1)/(5 * z^4))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton 5"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton6 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^6 - 1)/(6 * z^5))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton 6"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton7 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^7 - 1)/(7 * z^6))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton 7"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton8 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^8 - 1)/(8 * z^7))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton 8"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton9 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^9 - 1)/(9 * z^8))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton 9"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton5-z {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^5 - z - 1)/(5 * z^4 - 1))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (z^5 - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton5_2 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^5 + 3*z^3 - 5*z^2 - 1)/(5*z^4 + 9*z^2 - 10*z))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (z^5 + 3*z^3 - 5*z^2 - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton_5i {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^5 - 3*i*z^3 - (5+2*i)*z^2 + 3*z + 1)/(5*z^4 - 9*i*z^2 - (10*z + 4*i*z) + 3))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (z^5 - 3*i*z^3 - (5+2*i)*z^2 + 3*z + 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton_z6z3 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^6 + z^3 - 1)/(6*z^5 + 3*z^2))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (z^6 + z^3 - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonG3 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^3 - 2*z + 2)/(3 * z^2 - 2))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton Generalized 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonG8 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - (z^8 + 15*z^4 - 16)/(8*z^7 + 60*z^3)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton Generalized 8"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonSin {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - (sin(z)/cos(z))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (Sine function)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonSin1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((sin(z) - 1)/cos(z))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (sin(z) - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonSin_2 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((sin(z^2)-z)/(2*z*cos(z^2) - 1))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (sin(z^2)-z)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonCos {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - (cos(z)/-sin(z))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (Cosine function)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonCosh-1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((cosh(z)-1)/-sinh(z))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (cosh(z) - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton_Atan {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((atan(z))/(1/(z^2 + 1)))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (Arctangent function)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+MandelNewt1 {
+;
+; Tierazon formula 5: Newton variation, 3rd degree
+;
+init:
+  z = p1
+  c = pixel
+  i = sqrt(-1)
+loop:
+  f = z^3 - z - 1
+  f1 = 3 * z^2 - 1
+  zold = z
+  z = ((f/f1)-z) * c
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Mandelbrot Newton 1"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  param p1
+    caption = "Start value"
+    default = (0,0)
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.0000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+MandelNewt2 {
+;
+; Tierazon formula 6: Newton Apple, 3rd degree with miniature Mandelbrot sets
+;
+init:
+  z = p1
+  c = pixel
+  i = sqrt(-1)
+loop:
+  f = z^3 + (c - 1) * z - c
+  f1 = 3 * z^2 + c - 1
+  zold = z
+  z = z - (f/f1)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Mandelbrot Newton 2 (Newton Apple)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 1000
+  param p1
+    caption = "Start value"
+    default = (0,0)
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.0000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+MandelNewt3 {
+;
+; Tierazon formula 7
+;
+init:
+  z = p1
+  c = pixel
+  i = sqrt(-1)
+loop:
+  f = z^3 + (c - 1) * z - c
+  f1 = 3 * z^2 + c - 1
+  zold = z
+  z = z - (f/f1)
+  z = z + c
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Mandelbrot Newton 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  param p1
+    caption = "Start value"
+    default = (0,0)
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.0000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+MandelNewt4 {
+;
+; Tierazon formula 18
+;
+init:
+  z = p1
+  c = pixel
+  i = sqrt(-1)
+loop:
+  f = z^3 + z^2 * c - z + c
+  f1 = 3 * z^2 + 2 * c * z - 1
+  zold = z
+  z = z - (f/f1)
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Mandelbrot Newton 4"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  param p1
+    caption = "Start value"
+    default = (0,0)
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.0000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton3_2 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  z = z - ((z^3 - z^2 - z - 1)/(3*z^2 - 2*z - 1))
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (z^3 - z^2 - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton3_3 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = ((z^3)/3) - ((z^2)/2) - z - 1
+  f1 = z^2 - z - 1
+  zold = z
+  z = z - f/f1
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (((z^3)/3) - ((z^2)/2) - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+Newton4_1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = ((z^4)/4) - z
+  f1 = z^3 - 1
+  zold = z
+  z = z - f/f1
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (((z^4)/4) - z)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonD1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  f = ((z - i - 2)^2 * (z^2 - 1))/(z^2 + 2*i + 2)
+  f1 = (2*(z-i-2)*(z*(z*(z^2 + 4*i + 4) - 7*i - 4) - 2*i - 2))/(z^2 + 2*i + 2)^2
+  zold = z
+  z = z - f/f1
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton (((z - i - 2)^2 * (z^2 - 1))/(z^2 + 2*i + 2))"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+NewtonPoly {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = @a10*z^10 + @a9*z^9 + @a8*z^8 + @a7*z^7 + @a6*z^6 + @a5*z^5 + @a4*z^4 + @a3*z^3 + @a2*z^2 + @a1*z + @a0
+  f1 = (10*@a10)*z^9 + (9*@a9)*z^8 + (8*@a8)*z^7 + (7*@a7)*z^6 + (6*@a6)*z^5 + (5*@a5)*z^4 + (4*@a4)*z^3 + (3*@a3)*z^2 + (2*@a2)*z + @a1
+  z = z - f/f1
+bailout:
+  |z - zold| >= @bailout
+default:
+  title = "Newton Polynomial"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+  maxiter = 100
+  center = (0, 0)
+  param a10
+    default = (0, 0)
+  endparam
+  param a9
+    default = (0, 0)
+  endparam
+  param a8
+    default = (0, 0)
+  endparam
+  param a7
+    default = (0, 0)
+  endparam
+  param a6
+    default = (0, 0)
+  endparam
+  param a5
+    default = (0, 0)
+  endparam
+  param a4
+    default = (0, 0)
+  endparam
+  param a3
+    default = (1, 0)
+  endparam
+  param a2
+    default = (0, 0)
+  endparam
+  param a1
+    default = (0, 0)
+  endparam
+  param a0
+    default = (-1, 0)
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}

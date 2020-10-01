@@ -1,0 +1,293 @@
+FixedPointIteration {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^@power - 1
+  z = f
+bailout:
+  |z - f| >= @bailout
+default:
+  title = "Fixed Point Iteration"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param power
+    caption = "Exponent"
+    default = (3,0)
+    hint = "Overall exponent for the equation."
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+FixedPointIteration2 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^2 - z - 1
+  z = f
+bailout:
+  |z - f| >= @bailout
+default:
+  title = "Fixed Point Iteration 2"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+FixedPointIteration3_1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - z^2 - z - 1
+  z = f
+bailout:
+  |z - f| >= @bailout
+default:
+  title = "Fixed Point Iteration (z^3 - z^2 - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+FixedPointIteration3 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^3 - 1
+  z = f
+bailout:
+  |z - f| >= @bailout
+default:
+  title = "Fixed Point Iteration 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+FixedPointIterationD1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = ((z - i - 2)^2 * (z^2 - 1))/(z^2 + 2*i + 2)
+  z = f
+bailout:
+  |z - f| >= @bailout
+default:
+  title = "Fixed Point Iteration (((z - i - 2)^2 * (z^2 - 1))/(z^2 + 2*i + 2))"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+FixedPointIteration4 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = z^4 - 1
+  z = f
+bailout:
+  |z - f| >= @bailout
+default:
+  title = "Fixed Point Iteration 4"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+FixedPointIteration1_1 {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = 1 / (z - 1)
+  z = f
+bailout:
+  |z - f| >= @bailout
+default:
+  title = "Fixed Point Iteration (1 / (z - 1))"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}
+
+FixedPointIterationPoly {
+init:
+  z = pixel
+  i = sqrt(-1)
+loop:
+  zold = z
+  f = @a10*z^10 + @a9*z^9 + @a8*z^8 + @a7*z^7 + @a6*z^6 + @a5*z^5 + @a4*z^4 + @a3*z^3 + @a2*z^2 + @a1*z + @a0
+  z = f
+bailout:
+  |z - f| >= @bailout
+default:
+  title = "Fixed Point Iteration Polynomial"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param a10
+    default = (0, 0)
+  endparam
+  param a9
+    default = (0, 0)
+  endparam
+  param a8
+    default = (0, 0)
+  endparam
+  param a7
+    default = (0, 0)
+  endparam
+  param a6
+    default = (0, 0)
+  endparam
+  param a5
+    default = (0, 0)
+  endparam
+  param a4
+    default = (0, 0)
+  endparam
+  param a3
+    default = (1, 0)
+  endparam
+  param a2
+    default = (0, 0)
+  endparam
+  param a1
+    default = (0, 0)
+  endparam
+  param a0
+    default = (-1, 0)
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+}

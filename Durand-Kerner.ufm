@@ -1,0 +1,397 @@
+Durand-Kerner3 {
+;
+; Durand-Kerner method as a fractal
+;
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - 1
+  f1 = z1^3 - 1
+  f2 = z2^3 - 1
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - f / ((z-z1)*(z-z2))
+  r1 = z1 - f1 / ((z1-z)*(z1-z2))
+  r2 = z2 - f2 / ((z2-z)*(z2-z1))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Durand-Kerner 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Durand-Kerner Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for Durand-Kerner's method."
+  endparam
+}
+
+Durand-Kerner4 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+  z3 = pixel * a^3
+loop:
+  f = z^4 - 1
+  f1 = z1^4 - 1
+  f2 = z2^4 - 1
+  f3 = z3^4 - 1
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  zold3 = z3
+  r = z - f / ((z-z1)*(z-z2)*(z-z3))
+  r1 = z1 - f1 / ((z1-z)*(z1-z2)*(z1-z3))
+  r2 = z2 - f2 / ((z2-z)*(z2-z1)*(z2-z3))
+  r3 = z3 - f3 / ((z3-z)*(z3-z1)*(z3-z2))
+  z = r
+  z1 = r1
+  z2 = r2
+  z3 = r3
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout || |z3 - zold3| >= @bailout
+default:
+  title = "Durand-Kerner 4"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Durand-Kerner Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for Durand-Kerner's method."
+  endparam
+}
+
+
+Durand-KernerG3 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - 2*z + 2
+  f1 = z1^3 - 2*z1 + 2
+  f2 = z2^3 - 2*z2 + 2
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - f / ((z-z1)*(z-z2))
+  r1 = z1 - f1 / ((z1-z)*(z1-z2))
+  r2 = z2 - f2 / ((z2-z)*(z2-z1))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Durand-Kerner Generalized 3"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Durand-Kerner Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for Durand-Kerner's method."
+  endparam
+}
+
+Durand-KernerG8 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+  z3 = pixel * a^3
+  z4 = pixel * a^4
+  z5 = pixel * a^5
+  z6 = pixel * a^6
+  z7 = pixel * a^7
+loop:
+  f = z^8 + 15*z^4 - 16
+  f1 = z1^8 + 15*z1^4 - 16
+  f2 = z2^8 + 15*z2^4 - 16
+  f3 = z3^8 + 15*z3^4 - 16
+  f4 = z4^8 + 15*z4^4 - 16
+  f5 = z5^8 + 15*z5^4 - 16
+  f6 = z6^8 + 15*z6^4 - 16
+  f7 = z7^8 + 15*z7^4 - 16
+
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  zold3 = z3
+  zold4 = z4
+  zold5 = z5
+  zold6 = z6
+  zold7 = z7
+
+  r = z - f / ((z-z1)*(z-z2)*(z-z3)*(z-z4)*(z-z5)*(z-z6)*(z-z7))
+  r1 = z1 - f1 / ((z1-z)*(z1-z2)*(z1-z3)*(z1-z4)*(z1-z5)*(z1-z6)*(z1-z7))
+  r2 = z2 - f2 / ((z2-z)*(z2-z1)*(z2-z3)*(z2-z4)*(z2-z5)*(z2-z6)*(z2-z7))
+  r3 = z3 - f3 / ((z3-z)*(z3-z1)*(z3-z2)*(z3-z4)*(z3-z5)*(z3-z6)*(z3-z7))
+  r4 = z4 - f4 / ((z4-z)*(z4-z1)*(z4-z2)*(z4-z3)*(z4-z5)*(z3-z6)*(z4-z7))
+  r5 = z5 - f5 / ((z5-z)*(z5-z1)*(z5-z2)*(z5-z3)*(z5-z4)*(z5-z6)*(z5-z7))
+  r6 = z6 - f6 / ((z6-z)*(z6-z1)*(z6-z2)*(z6-z3)*(z6-z4)*(z6-z5)*(z6-z7))
+  r7 = z7 - f7 / ((z7-z)*(z7-z1)*(z7-z2)*(z7-z3)*(z7-z4)*(z7-z5)*(z7-z6))
+
+  z = r
+  z1 = r1
+  z2 = r2
+  z3 = r3
+  z4 = r4
+  z5 = r5
+  z6 = r6
+  z7 = r7
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout || |z3 - zold3| >= @bailout || |z4 - zold4| >= @bailout || |z5 - zold5| >= @bailout || |z6 - zold6| >= @bailout || |z7 - zold7| >= @bailout
+default:
+  title = "Durand-Kerner Generalized 8"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for the Durand-Kerner method."
+  endparam
+}
+
+
+Durand-Kerner3_1 {
+;
+; Durand-Kerner fractal, example polynomial used from
+; https://en.wikipedia.org/wiki/Durand%E2%80%93Kerner_method#Example
+;
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - (3*z^2) + (3*z) - 5
+  f1 = z1^3 - (3*z1^2) + (3*z1) - 5
+  f2 = z2^3 - (3*z2^2) + (3*z2) - 5
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - f / ((z-z1)*(z-z2))
+  r1 = z1 - f1 / ((z1-z)*(z1-z2))
+  r2 = z2 - f2 / ((z2-z)*(z2-z1))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Durand-Kerner (z^3 - 3z^2 + 3z - 5)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Durand-Kerner Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for Durand-Kerner's method."
+  endparam
+}
+
+Durand-Kerner3_2 {
+;
+; Durand-Kerner fractal, example polynomial used from Oscar Veliz's video
+; about the Durand-Kerner method
+; https://www.youtube.com/watch?v=5JcpOj2KtWc&t=148s
+;
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - ((13*z^2)/4) + ((47*z)/16) - (35/64)
+  f1 = z1^3 - ((13*z1^2)/4) + ((47*z1)/16) - (35/64)
+  f2 = z2^3 - ((13*z2^2)/4) + ((47*z2)/16) - (35/64)
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - f / ((z-z1)*(z-z2))
+  r1 = z1 - f1 / ((z1-z)*(z1-z2))
+  r2 = z2 - f2 / ((z2-z)*(z2-z1))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Durand-Kerner (z^3 - ((13z^2)/4) + ((47z)/16) - (35/64))"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Durand-Kerner Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for Durand-Kerner's method."
+  endparam
+}
+
+
+Durand-Kerner3_3 {
+init:
+  a = p1
+  i = sqrt(-1)
+  z = pixel
+  z1 = pixel * a
+  z2 = pixel * a^2
+loop:
+  f = z^3 - z^2 - z - 1
+  f1 = z1^3 - z1^2 - z1 - 1
+  f2 = z2^3 - z2^2 - z2 - 1
+  zold = z
+  zold1 = z1
+  zold2 = z2
+  r = z - f / ((z-z1)*(z-z2))
+  r1 = z1 - f1 / ((z1-z)*(z1-z2))
+  r2 = z2 - f2 / ((z2-z)*(z2-z1))
+  z = r
+  z1 = r1
+  z2 = r2
+bailout:
+  |z - zold| >= @bailout || |z1 - zold1| >= @bailout || |z2 - zold2| >= @bailout
+default:
+  title = "Durand-Kerner (z^3 - z^2 - z - 1)"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param p1
+    caption = "Durand-Kerner Initial Value"
+    default = (0.4, 0.9)
+    hint = "The initial value for Durand-Kerner's method."
+  endparam
+}

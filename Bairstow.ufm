@@ -1,0 +1,1317 @@
+Bairstow3_1 {
+; Julia set of Bairstow's method applied to z^3 - z = 0
+init:
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 0
+  a1 = -1
+  a2 = 0
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0
+loop:
+  u = real(z)
+  v = imag(z)
+ 
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+
+bailout:
+  |oz - z| >= @bailout
+
+default:
+  title = "Bairstow (z^3 - z)"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+}
+
+Bairstow4 {
+; Julia set of Bairstow's method applied to z^4 - 1 = 0
+init:
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 1
+  b4 = b3 = b2 = b1 = b0 = 0
+  f4 = f3 = f2 = f1 = f0 = 0
+loop:
+  u = real(z)
+  v = imag(z)
+ 
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+
+bailout:
+  |oz - z| >= @bailout
+
+default:
+  title = "Bairstow 4"
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.000000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+}
+
+Bairstow4_6 {
+; Julia set of Bairstow's method applied to z^4 - z
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 0
+  a1 = -1
+  a2 = 0
+  a3 = 0
+  a4 = 1
+  b4 = b3 = b2 = b1 = b0 = 0
+  f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow4_7 {
+; Julia set of Bairstow's method applied to z^4 - z^3
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 0
+  a1 = 0
+  a2 = 0
+  a3 = -1
+  a4 = 1
+  b4 = b3 = b2 = b1 = b0 = 0
+  f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow4_8 {
+; Julia set of Bairstow's method applied to z^4 - 5z^2 + 4
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 4
+  a1 = 0
+  a2 = -5
+  a3 = 0
+  a4 = 1
+  b4 = b3 = b2 = b1 = b0 = 0
+  f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow5 {
+; Julia set of Bairstow's method applied to z^5 - 1 = 0
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 1
+  b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow5_2 {
+; Julia set of Bairstow's method applied to 6z^5 + 11z^4 - 33z^3 - 33z^2 + 11z + 6, the example in Wikipedia
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 6
+  a1 = 11
+  a2 = -33
+  a3 = -33
+  a4 = 11
+  a5 = 6
+  b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  b6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow5_3 {
+; Julia set of Bairstow's method applied to z^5 - z - 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = -1
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 1
+  b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow5_4 {
+; Julia set of Bairstow's method applied to z^5 + 3z^3 - 5z^2 - 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = 0
+  a2 = -5
+  a3 = 3
+  a4 = 0
+  a5 = 1
+  b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow5_5 {
+; Julia set of Bairstow's method applied to z^5 - (3i)z^3 - (5+2i)z^2 + 3z + 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 1
+  a1 = 3
+  a2 = (5+2*i)
+  a3 = 3*i
+  a4 = 0
+  a5 = 1
+  b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow6 {
+; Julia set of Bairstow's method applied to z^6 - z
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 0
+  a1 = 1
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 0
+  a6 = 1
+  b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  b6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow6_1 {
+; Julia set of Bairstow's method applied to z^6 - 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 0
+  a6 = 1
+  b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  b6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow6_3 {
+; Julia set of Bairstow's method applied to z^6 + (2-4i)z^5 - z + (2+4i)
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 2+4*i
+  a1 = -1
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 2-4*i
+  a6 = 1
+  b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow7 {
+; Julia set of Bairstow's method applied to z^7 - 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 0
+  a6 = 0
+  a7 = 1
+  b7 = b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  b7 = b6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b5 = a7 - (u*b6) - (v*b7)
+  f5 = b7 - (u*f6) - (v*f7)
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow8 {
+; Julia set of Bairstow's method applied to z^8 - 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 0
+  a6 = 0
+  a7 = 0
+  a8 = 1
+  b8 = b7 = b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f8 = f7 = f6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b6 = a8 - (u*b7) - (v*b8)
+  f6 = b8 - (u*f7) - (v*f8)
+  b5 = a7 - (u*b6) - (v*b7)
+  f5 = b7 - (u*f6) - (v*f7)
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow9 {
+; Julia set of Bairstow's method applied to z^9 - 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 0
+  a6 = 0
+  a7 = 0
+  a8 = 0
+  a9 = 1
+  b9 = b8 = b7 = b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f8 = f7 = f6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b7 = a9 - (u*b8) - (v*b9)
+  f7 = b9 - (u*f8) - (v*f9)
+  b6 = a8 - (u*b7) - (v*b8)
+  f6 = b8 - (u*f7) - (v*f8)
+  b5 = a7 - (u*b6) - (v*b7)
+  f5 = b7 - (u*f6) - (v*f7)
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+BairstowR3_1 {
+; Julia set of Bairstow's method applied to z^3 - 1 = 0, a = 0.5+0.5i
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a = 0.5+0.5*i
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - a * (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+BairstowR3_2 {
+; Julia set of Bairstow's method applied to z^3 - 1 = 0, a = 2
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a = 2
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - a * (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+}
+
+Bairstow6_2 {
+; Julia set of Bairstow's method applied to z^6 - z^3 - 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 0
+  a1 = 1
+  a2 = 0
+  a3 = 1
+  a4 = 0
+  a5 = 0
+  a6 = 1
+  b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^6 - z^3 - 1)"
+}
+
+Bairstow10_1 {
+; Julia set of Bairstow's method applied to z^10 + (8z^3 - z + 1)
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = (8*z^3 - z + 1)
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 0
+  a6 = 0
+  a7 = 0
+  a8 = 0
+  a9 = 0
+  a10 = 1
+  b10 = b9 = b8 = b7 = b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f10 = f9 = f8 = f7 = f6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b8 = a10 - (u*b9) - (v*b10)
+  f8 = b10 - (u*f9) - (v*f10)
+  b7 = a9 - (u*b8) - (v*b9)
+  f7 = b9 - (u*f8) - (v*f9)
+  b6 = a8 - (u*b7) - (v*b8)
+  f6 = b8 - (u*f7) - (v*f8)
+  b5 = a7 - (u*b6) - (v*b7)
+  f5 = b7 - (u*f6) - (v*f7)
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^10 + (8z^3 - z + 1))"
+}
+
+Bairstow20_1 {
+; Julia set of Bairstow's method applied to z^20 + (8z^3 - z + 1)
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = (8*z^3 - z + 1)
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 0
+  a5 = 0
+  a6 = 0
+  a7 = 0
+  a8 = 0
+  a9 = 0
+  a10 = 0
+  a11 = 0
+  a12 = 0
+  a13 = 0
+  a14 = 0
+  a15 = 0
+  a16 = 0
+  a17 = 0
+  a18 = 0
+  a19 = 0
+  a20 = 1
+  b20 = b19 = b18 = b17 = b16 = b15 = b14 = b13 = b12 = b11 = b10 = b9 = b8 = b7 = b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f20 = f19 = f18 = f17 = f16 = f15 = f14 = f13 = f12 = f11 = f10 = f9 = f8 = f7 = f6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b18 = a20 - (u*b19) - (v*b20)
+  f18 = b20 - (u*f19) - (v*f20)
+  b17 = a19 - (u*b18) - (v*b19)
+  f17 = b19 - (u*f18) - (v*f19)
+  b16 = a18 - (u*b17) - (v*b18)
+  f16 = b18 - (u*f17) - (v*f18)
+  b15 = a17 - (u*b16) - (v*b17)
+  f15 = b17 - (u*f16) - (v*f17)
+  b14 = a16 - (u*b15) - (v*b16)
+  f14 = b16 - (u*f15) - (v*f16)
+  b13 = a15 - (u*b14) - (v*b15)
+  f13 = b15 - (u*f14) - (v*f15)
+  b12 = a14 - (u*b13) - (v*b14)
+  f12 = b14 - (u*f13) - (v*f14)
+  b11 = a13 - (u*b12) - (v*b13)
+  f11 = b13 - (u*f12) - (v*f13)
+  b10 = a12 - (u*b11) - (v*b12)
+  f10 = b12 - (u*f11) - (v*f12)
+  b9 = a11 - (u*b10) - (v*b11)
+  f9 = b11 - (u*f10) - (v*f11)
+  b8 = a10 - (u*b9) - (v*b10)
+  f8 = b10 - (u*f9) - (v*f10)
+  b7 = a9 - (u*b8) - (v*b9)
+  f7 = b9 - (u*f8) - (v*f9)
+  b6 = a8 - (u*b7) - (v*b8)
+  f6 = b8 - (u*f7) - (v*f8)
+  b5 = a7 - (u*b6) - (v*b7)
+  f5 = b7 - (u*f6) - (v*f7)
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^20 + (8z^3 - z + 1))"
+}
+
+Bairstow3 {
+; Julia set of Bairstow's method applied to z^3 - 1 = 0
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow 3"
+}
+
+Bairstow3_2 {
+; Julia set of Bairstow's method applied to z^3 - 2z^2 + z
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 0
+  a1 = 1
+  a2 = -2
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^3 - 2z^2 + z)"
+}
+
+Bairstow3_3 {
+; Julia set of Bairstow's method applied to z^3 - z^2
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 0
+  a1 = 0
+  a2 = -1
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^3 - z^2)"
+}
+
+Bairstow3_4 {
+; Julia set of Bairstow's method applied to z^3 - 3*z^2 + 3*z - 5 = 0
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -5
+  a1 = 3
+  a2 = -3
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^3 - 3z^2 + 3z - 5)"
+}
+
+Bairstow3_5 {
+; Julia set of Bairstow's method applied to z^3 + (-1-i)z - 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -1
+  a1 = -1-i
+  a2 = 0
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^3 + (-1-i)z - 1)"
+}
+
+Bairstow4_2 {
+; Julia set of Bairstow's method applied to z^4 + z^3 + z^2 + z + 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 1
+  a1 = 1
+  a2 = 1
+  a3 = 1
+  a4 = 1
+  b4 = b3 = b2 = b1 = b0 = 0
+  f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^4 + z^3 + z^2 + z + 1)"
+}
+
+Bairstow4_3 {
+; Julia set of Bairstow's method applied to z^4 + z^2 + 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 1
+  a1 = 0
+  a2 = 1
+  a3 = 0
+  a4 = 1
+  b4 = b3 = b2 = b1 = b0 = 0
+  f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^4 + z^2 + 1)"
+}
+
+Bairstow4_4 {
+; Julia set of Bairstow's method applied to z^4 + 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 1
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 1
+  b4 = b3 = b2 = b1 = b0 = 0
+  f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^4 + 1)"
+}
+
+Bairstow4_5 {
+; Julia set of Bairstow's method applied to z^4 - z^2 + 1
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 1
+  a1 = 0
+  a2 = -1
+  a3 = 0
+  a4 = 1
+  b4 = b3 = b2 = b1 = b0 = 0
+  f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow (z^4 - z^2 + 1)"
+}
+
+BairstowR3 {
+; Julia set of Bairstow's method applied to z^3 - 1 = 0, a = 0.5
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a = 0.5
+  a0 = -1
+  a1 = 0
+  a2 = 0
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - a * (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Relaxed Bairstow 3 (a = 0.5)"
+}
+
+BairstowG8 {
+; Julia set of Bairstow's method applied to z^8 + 15*z^4 - 16 = 0
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = -16
+  a1 = 0
+  a2 = 0
+  a3 = 0
+  a4 = 15
+  a5 = 0
+  a6 = 0
+  a7 = 0
+  a8 = 1
+  b8 = b7 = b6 = b5 = b4 = b3 = b2 = b1 = b0 = 0
+  f8 = f7 = f6 = f5 = f4 = f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b6 = a8 - (u*b7) - (v*b8)
+  f6 = b8 - (u*f7) - (v*f8)
+  b5 = a7 - (u*b6) - (v*b7)
+  f5 = b7 - (u*f6) - (v*f7)
+  b4 = a6 - (u*b5) - (v*b6)
+  f4 = b6 - (u*f5) - (v*f6)
+  b3 = a5 - (u*b4) - (v*b5)
+  f3 = b5 - (u*f4) - (v*f5)
+  b2 = a4 - (u*b3) - (v*b4)
+  f2 = b4 - (u*f3) - (v*f4)
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow Generalized 8"
+}
+
+BairstowG3 {
+; Julia set of Bairstow's method applied to z^3 - 2z + 2 = 0
+
+  i = sqrt(-1)
+  z = (-2 * real(pixel)) + i * ((real(pixel)^2 + imag(pixel) * abs(imag(pixel))))
+  a0 = 2
+  a1 = -2
+  a2 = 0
+  a3 = 1
+  b3 = b2 = b1 = b0 = 0
+  f3 = f2 = f1 = f0 = 0:
+  u = real(z)
+  v = imag(z)
+ 
+  b1 = a3 - (u*b2) - (v*b3)
+  f1 = b3 - (u*f2) - (v*f3)
+  b0 = a2 - (u*b1) - (v*b2)
+  f0 = b2 - (u*f1) - (v*f2)
+ 
+  c = a1 - (u*b0) - (v*b1)
+  d = a0 - (v*b0)
+  g = b1 - (u*f0) - (v*f1)
+  h = b0 - (v*f0)
+  ug = u*g
+  vg = v*g
+  factor = 1 / (vg * g + h * (h - ug))
+  oz = z
+  z = z - (((-h * c + g * d) * factor) + i * ((-vg * c + (ug - h) * d) * factor))
+  |oz - z| >= 10^(-21)
+default:
+  title="Bairstow Generalized 3"
+}
