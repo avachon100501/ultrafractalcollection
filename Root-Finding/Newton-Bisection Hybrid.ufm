@@ -3,58 +3,55 @@ init:
   z = pixel
   i = sqrt(-1)
 loop:
+
+ if (a > b)
+      a = initb
+      b = inita
+ endif
      f = z^3 - 1
      f1 = 3*z^2
-     if (f1 == 0)
-        z = (a + b)/2
-        fa = a^3 - 1
-        fb = b^3 - 1
-           if ((fa * f) < 0)
+     fa = @a^3 - 1
+     fb = @b^3 - 1
+     laststep = @b - @a
+     zold = @b
+  if (f1 == 0) ; Avoid dividing by zero
+           if ((fa * f) <= 0)
                b = z
            else
                a = z
            endif
-      endif
-  if (abs(f * 2) > abs(z * f1))
-        z = (a + b)/2
-        fa = a^3 - 1
-        fb = b^3 - 1
-           if ((fa * f) < 0)
+        z = (@a + @b)/2
+   else
+     zold = z
+     z = z - f/f1
+   endif
+  laststep = abs(z - zold)
+  if (abs(f * 2) > abs(laststep * f1)) ; Decreasing slowly
+           if ((fa * f) <= 0)
                b = z
            else
                a = z
            endif
-     endif
-  if (z <= a)
-        z = (a + b)/2
-        fa = a^3 - 1
-        fb = b^3 - 1
-           if ((fa * f) < 0)
-               b = z
-           else
-               a = z
-           endif
-     endif
-  if (z >= b)
-        z = (a + b)/2
-        fa = a^3 - 1
-        fb = b^3 - 1
-           if ((fa * f) < 0)
-               b = z
-           else
-               a = z
-           endif
-     endif
-     if (f1 != 0)
+           z = (@a + @b)/2
+     else
        zold = z
        z = z - f/f1
      endif
-   if ((f * fa) < 0)
+  if (z <= @a) || (z >= @b) ; Avoid going outside interval
+           if ((fa * f) <= 0)
+               b = z
+           else
+               a = z
+           endif
+           z = (@a + @b)/2
+   else
+     if ((f * fa) < 0) ; Shrink interval
        b = z
        fb = f
-   else
+     else
        a = z
        fa = f
+     endif
    endif
 
 bailout:
@@ -68,16 +65,6 @@ $IFDEF VER50
 $ENDIF
   maxiter = 100
   center = (0, 0)
-  param a
-    caption = "a value"
-    default = 1
-    min = 0
-  endparam
-  param b
-    caption = "b value"
-    default = 2
-    min = 0
-  endparam
   param bailout
     caption = "Bailout value"
     default = 0.00001
@@ -97,60 +84,55 @@ init:
   z = pixel
   i = sqrt(-1)
 loop:
+ if (a > b)
+      a = initb
+      b = inita
+ endif
      f = z^4 - 1
      f1 = 4*z^3
-     if (f1 == 0)
-        z = (a + b)/2
-        fa = a^4 - 1
-        fb = b^4 - 1
-           if ((fa * f) < 0)
+     fa = @a^4 - 1
+     fb = @b^4 - 1
+     laststep = @b - @a
+     zold = @b
+  if (f1 == 0) ; Avoid dividing by zero
+           if ((fa * f) <= 0)
                b = z
            else
                a = z
            endif
-      endif
-  if (abs(f * 2) > abs(z * f1))
-        z = (a + b)/2
-        fa = a^4 - 1
-        fb = b^4 - 1
-           if ((fa * f) < 0)
+        z = (@a + @b)/2
+   else
+     zold = z
+     z = z - f/f1
+   endif
+  laststep = abs(z - zold)
+  if (abs(f * 2) > abs(laststep * f1)) ; Decreasing slowly
+           if ((fa * f) <= 0)
                b = z
            else
                a = z
            endif
-     endif
-  if (z <= a)
-        z = (a + b)/2
-        fa = a^4 - 1
-        fb = b^4 - 1
-           if ((fa * f) < 0)
-               b = z
-           else
-               a = z
-           endif
-     endif
-  if (z >= b)
-        z = (a + b)/2
-        fa = a^4 - 1
-        fb = b^4 - 1
-           if ((fa * f) < 0)
-               b = z
-           else
-               a = z
-           endif
-     endif
-     if (f1 != 0)
+           z = (@a + @b)/2
+     else
        zold = z
        z = z - f/f1
      endif
-   if ((f * fa) < 0)
+  if (z <= @a) || (z >= @b) ; Avoid going outside interval
+           if ((fa * f) <= 0)
+               b = z
+           else
+               a = z
+           endif
+           z = (@a + @b)/2
+   else
+     if ((f * fa) < 0) ; Shrink interval
        b = z
        fb = f
-   else
+     else
        a = z
        fa = f
+     endif
    endif
-
 bailout:
   |z - zold| >= @bailout
 default:
@@ -162,16 +144,6 @@ $IFDEF VER50
 $ENDIF
   maxiter = 100
   center = (0, 0)
-  param a
-    caption = "a value"
-    default = 1
-    min = 0
-  endparam
-  param b
-    caption = "b value"
-    default = 2
-    min = 0
-  endparam
   param bailout
     caption = "Bailout value"
     default = 0.00001
@@ -190,58 +162,54 @@ init:
   z = pixel
   i = sqrt(-1)
 loop:
-  f = atan(z)
-  f1 = (1/(z^2 + 1))
-  if (f1 == 0)
-        z = (a + b)/2
-        fa = atan(a)
-        fb = atan(b)
-           if ((fa * f) < 0)
+ if (a > b)
+      a = initb
+      b = inita
+ endif
+     f = atan(z)
+     f1 = 1/(z^2 + 1)
+     fa = atan(@a)
+     fb = atan(@b)
+     laststep = @b - @a
+     zold = @b
+  if (f1 == 0) ; Avoid dividing by zero
+           if ((fa * f) <= 0)
                b = z
            else
                a = z
            endif
-     endif
-  if (abs(f * 2) > abs(z * f1))
-        z = (a + b)/2
-        fa = atan(a)
-        fb = atan(b)
-           if ((fa * f) < 0)
+        z = (@a + @b)/2
+   else
+     zold = z
+     z = z - f/f1
+   endif
+  laststep = abs(z - zold)
+  if (abs(f * 2) > abs(laststep * f1)) ; Decreasing slowly
+           if ((fa * f) <= 0)
                b = z
            else
                a = z
            endif
-     endif
-  if (z <= a)
-        z = (a + b)/2
-        fa = atan(a)
-        fb = atan(b)
-           if ((fa * f) < 0)
-               b = z
-           else
-               a = z
-           endif
-     endif
-  if (z >= b)
-        z = (a + b)/2
-        fa = atan(a)
-        fb = atan(b)
-           if ((fa * f) < 0)
-               b = z
-           else
-               a = z
-           endif
-     endif
-     if (f1 != 0)
+           z = (@a + @b)/2
+     else
        zold = z
        z = z - f/f1
      endif
-   if ((f * fa) < 0)
+  if (z <= @a) || (z >= @b) ; Avoid going outside interval
+           if ((fa * f) <= 0)
+               b = z
+           else
+               a = z
+           endif
+           z = (@a + @b)/2
+   else
+     if ((f * fa) < 0) ; Shrink interval
        b = z
        fb = f
-   else
+     else
        a = z
        fa = f
+     endif
    endif
 bailout:
   |z - zold| >= @bailout
@@ -254,12 +222,10 @@ default:
   param a
     caption = "a value"
     default = (1, 0)
-    min = 0
   endparam
   param b
     caption = "b value"
     default = (2, 0)
-    min = 0
   endparam
   param bailout
     caption = "Bailout value"
@@ -279,60 +245,55 @@ init:
   z = pixel
   i = sqrt(-1)
 loop:
+ if (a > b)
+      a = initb
+      b = inita
+ endif
      f = (z - 1.75)^3
      f1 = 3*(z - 1.75)^2
-     if (f1 == 0)
-        z = (a + b)/2
-        fa = (a - 1.75)^3
-        fb = (b - 1.75)^3
-           if ((fa * f) < 0)
+     fa = atan(@a)
+     fb = atan(@b)
+     laststep = @b - @a
+     zold = @b
+  if (f1 == 0) ; Avoid dividing by zero
+           if ((fa * f) <= 0)
                b = z
            else
                a = z
            endif
-      endif
-  if (abs(f * 2) > abs(z * f1))
-        z = (a + b)/2
-        fa = (a - 1.75)^3
-        fb = (b - 1.75)^3
-           if ((fa * f) < 0)
+        z = (@a + @b)/2
+   else
+     zold = z
+     z = z - f/f1
+   endif
+  laststep = abs(z - zold)
+  if (abs(f * 2) > abs(laststep * f1)) ; Decreasing slowly
+           if ((fa * f) <= 0)
                b = z
            else
                a = z
            endif
-     endif
-  if (z <= a)
-        z = (a + b)/2
-         fa = (a - 1.75)^3
-        fb = (b - 1.75)^3
-           if ((fa * f) < 0)
-               b = z
-           else
-               a = z
-           endif
-     endif
-  if (z >= b)
-        z = (a + b)/2
-        fa = (a - 1.75)^3
-        fb = (b - 1.75)^3
-           if ((fa * f) < 0)
-               b = z
-           else
-               a = z
-           endif
-     endif
-     if (f1 != 0)
+           z = (@a + @b)/2
+     else
        zold = z
        z = z - f/f1
      endif
-   if ((f * fa) < 0)
+  if (z <= @a) || (z >= @b) ; Avoid going outside interval
+           if ((fa * f) <= 0)
+               b = z
+           else
+               a = z
+           endif
+           z = (@a + @b)/2
+   else
+     if ((f * fa) < 0) ; Shrink interval
        b = z
        fb = f
-   else
+     else
        a = z
        fa = f
+     endif
    endif
-
 bailout:
   |z - zold| >= @bailout
 default:
@@ -344,16 +305,6 @@ $IFDEF VER50
 $ENDIF
   maxiter = 100
   center = (0, 0)
-  param a
-    caption = "a value"
-    default = 1
-    min = 0
-  endparam
-  param b
-    caption = "b value"
-    default = 2
-    min = 0
-  endparam
   param bailout
     caption = "Bailout value"
     default = 0.00001
