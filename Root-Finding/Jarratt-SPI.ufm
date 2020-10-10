@@ -1,22 +1,38 @@
 JarrattSPI4 {
 init:
   z = pixel
-  znm2 = p2
   znm1 = p1
+  znm2 = p2
   x = real(z)
   y = imag(z)
-  dist = sqrt(x*x+y*y)
-  r = 2
   i = sqrt(-1)
-  invphi = (1 + sqrt(5)) / (2 - 1)
+  dist = sqrt(x^2+y^2)
+  invphi = 1 / ((1 + sqrt(5)) / 2)
   ratio = (3 - sqrt(5)) / 2
 loop:
+  if (x < 0)
+     theta = atan(y/(x+pi))
+  else
+     theta = atan(y/x)
+  endif
+  if (x == 0 && y > 0)
+     x = z
+     y = pi/2
+  elseif (x == 0)
+     x = z
+     y = (3*pi)/2
+  else
+     x = z
+     y = theta
+  endif
+  znm2 = znm2*(abs(z)*@b)*dist*exp(i)*theta
+  znm1 = znm1*(abs(z)*@a)*dist*exp(i)*theta
+  z = z
   fz2 = znm2^4/4 - znm2
   fz1 = znm1^4/4 - znm1
   fz = z^4/4 - z
-  z = znm1 - 0.5 * ((znm1 - znm2)^2*(fz1 - fz)-(znm1 - z)^2*(fz1 - fz2))/((znm1 - znm2)*(fz1 - fz)-(znm1 - z)*(fz1 - fz2))
-  znm2 = znm1
-  znm1 = z
+  z = znm1 + 0.5 * ((znm1 - znm2)^2*(fz1 - fz)-(znm1 - z)^2*(fz1 - fz2))/((znm1 - znm2)*(fz1 - fz)-(znm1 - z)*(fz1 - fz2))
+  znm2 = znm1 = z
 bailout:
   |z - znm1| >= @bailout
 
@@ -24,28 +40,24 @@ default:
   title = "Jarratt (Successive Parabolic Interpolation) 4"
   maxiter = 1000
 
-  param p1
+  param b
     caption = "1st start value"
-    default = 1.5
+    default = (1.001, 0)
     hint = "Start value for znm1."
   endparam
 
-  param p2
+  param a
     caption = "2nd start value"
-    default = 2.0
+    default = (0.999, 0)
     hint = "Start value for znm2."
   endparam
 
-  param p3
-    caption = "3rd start value"
-    default = 1.75
-    hint = "Start value for znm3."
+  param p1
+    default = (-0.001, 0)
   endparam
 
-  param p4
-    caption = "4th start value"
-    default = 3.0
-    hint = "Start value for znm4."
+  param p2
+    default = (0.001, 0)
   endparam
 
   param bailout
