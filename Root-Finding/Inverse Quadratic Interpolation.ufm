@@ -20,7 +20,7 @@ init:
      theta = atan(y/x)
     endif
   endif
- if (z = 0)
+ if (z == 0)
     ooz = p1
     oz = p2
   else
