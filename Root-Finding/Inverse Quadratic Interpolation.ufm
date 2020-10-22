@@ -1,39 +1,64 @@
 IQI3 {
 init:
   z = pixel
-  ooz = p2
-  oz = p1
   i = sqrt(-1)
+  x = real(z)
+  y = imag(z)
+  comp = x + y*i
+  rad = sqrt(x^2+y^2)
+  if (x == 0 && y > 0)
+     z = comp
+     theta = pi/2
+  elseif (x == 0)
+     z = comp
+     theta = 3*pi/2
+  else
+     z = comp
+    if (x < 0)
+     theta = atan(y/x)+pi
+    else
+     theta = atan(y/x)
+    endif
+  endif
+ if (z = 0)
+    ooz = p1
+    oz = p2
+  else
+    ooz = @b*rad*exp(i*theta)
+    oz = @a*rad*exp(i*theta)
+    z = z
+  endif
 loop:
   f2 = ooz^3 - 1
   f1 = oz^3 - 1
   f = z^3 - 1
-  z = ooz*((f1*f)/((f2-f1)*(f2-f))) + oz*((f2*f)/((f1-f2)*(f1-f))) + z*((f2*f1)/((f1-f2)*(f-f1)))
+  temp = ooz*((f1*f)/((f2-f1)*(f2-f))) + oz*((f2*f)/((f1-f2)*(f1-f))) + z*((f2*f1)/((f1-f2)*(f-f1)))
   ooz = oz
   oz = z
+  z = temp
 bailout:
-  |z - oz| > @bailout
+  |z - oz| >= @bailout
 
 default:
   title = "Inverse Quadratic Interpolation 3"
   maxiter = 1000
 
-  param p1
+    param b
     caption = "1st start value"
-    default = 1.5
-    hint = "Start value for oz."
+    default = (1.001, 0)
+  endparam
+
+  param a
+    caption = "2nd start value"
+    default = (0.999, 0)
+  endparam
+
+  param p1
+    default = (-0.0001, 0)
   endparam
 
   param p2
-    caption = "2nd start value"
-    default = 2.0
-    hint = "Start value for ooz."
-  endparam
-
-  param bailout
-    caption = "Bailout Value"
-    default = 1.0e-20
-    hint = "The bailout value."
+    default = (0.0001, 0)
   endparam
 }
 
