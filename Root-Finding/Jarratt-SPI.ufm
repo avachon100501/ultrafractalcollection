@@ -25,8 +25,8 @@ init:
     znm1 = @p2
     z = 0
   else
-    znm2 = @a*rad*exp(i*theta)
-    znm1 = @b*rad*exp(i*theta)
+    znm2 = @a*rad*cos(theta)+@a*rad*i*sin(theta)
+    znm1 = @b*rad*cos(theta)+@b*rad*i*sin(theta)
     z = z
   endif
 loop:
@@ -43,12 +43,12 @@ default:
   title = "Jarratt (Successive Parabolic Interpolation) 4"
   maxiter = 1000
 
-  param a
+  param b
     caption = "1st start value"
     default = (1.001, 0)
   endparam
 
-  param b
+  param a
     caption = "2nd start value"
     default = (0.999, 0)
   endparam
@@ -90,12 +90,12 @@ init:
      theta = atan(y/x)
     endif
   endif
-  if (z = 0)
-    znm2 = p1
-    znm1 = p2
+  if (z == 0)
+    znm2 = @p1
+    znm1 = @p2
   else
-    znm2 = @b*rad*exp(i*theta)
-    znm1 = @a*rad*exp(i*theta)
+    znm2 = @a*rad*cos(theta)+@a*rad*i*sin(theta)
+    znm1 = @b*rad*cos(theta)+@b*rad*i*sin(theta)
     z = z
   endif
 loop:
@@ -120,6 +120,14 @@ default:
   param a
     caption = "2nd start value"
     default = (0.999, 0)
+  endparam
+
+  param p1
+    default = (-0.001, 0)
+  endparam
+
+  param p2
+    default = (0.001, 0)
   endparam
 
   param bailout
@@ -152,12 +160,11 @@ init:
     endif
   endif
   if (z == 0)
-    znm2 = p1
-    znm1 = p2
-    z = 0
+    znm2 = @p1
+    znm1 = @p2
   else
-    znm2 = @b*rad*exp(i*theta)
-    znm1 = @a*rad*exp(i*theta)
+    znm2 = @a*rad*cos(theta)+@a*rad*i*sin(theta)
+    znm1 = @b*rad*cos(theta)+@b*rad*i*sin(theta)
     z = z
   endif
 loop:
@@ -182,6 +189,14 @@ default:
   param a
     caption = "2nd start value"
     default = (0.999, 0)
+  endparam
+
+  param p1
+    default = (-0.001, 0)
+  endparam
+
+  param p2
+    default = (0.001, 0)
   endparam
 
   param bailout
@@ -214,12 +229,11 @@ init:
     endif
   endif
   if (z == 0)
-    znm2 = p1
-    znm1 = p2
-    z = 0
+    znm2 = @p1
+    znm1 = @p2
   else
-    znm2 = @a*rad*exp(i*theta)
-    znm1 = @b*rad*exp(i*theta)
+    znm2 = @a*rad*cos(theta)+@a*rad*i*sin(theta)
+    znm1 = @b*rad*cos(theta)+@b*rad*i*sin(theta)
     z = z
   endif
 loop:
@@ -236,14 +250,22 @@ default:
   title = "Jarratt (Successive Parabolic Interpolation, atan(z))"
   maxiter = 1000
 
-  param a
+  param b
     caption = "1st start value"
+    default = (1.001, 0)
+  endparam
+
+  param a
+    caption = "2nd start value"
     default = (0.999, 0)
   endparam
 
-  param b
-    caption = "2nd start value"
-    default = (1.001, 0)
+  param p1
+    default = (-0.001, 0)
+  endparam
+
+  param p2
+    default = (0.001, 0)
   endparam
 
   param bailout
