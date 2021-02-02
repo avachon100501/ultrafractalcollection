@@ -1,0 +1,860 @@
+2DNewton1 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^3 - 1
+  f2 = y^3 - 1
+  d1f1 = 3*x^2
+  d2f1 = 0
+  d1f2 = 0
+  d2f2 = 3*y^2
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 1"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton2 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^3 - 2*y + 2
+  f2 = y^3 - 2*x + 2
+  d1f1 = 3*x^2
+  d2f1 = -2
+  d1f2 = -2
+  d2f2 = 3*y^2
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 2"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton4 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = sin(x) + sin(y)
+  f2 = sin(y) - sin(x)
+  d1f1 = cos(x)
+  d2f1 = cos(y)
+  d1f2 = -cos(x)
+  d2f2 = cos(y)
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 4"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+
+2DNewton5 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^3 + y
+  f2 = y^3 - x
+  d1f1 = 3*x^2
+  d2f1 = 1
+  d1f2 = -1
+  d2f2 = 3*y^2
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 5"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton6 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = atan(x)
+  f2 = y^9/9 - y^7/7 + y^5/5 - y^3/3 + y
+  d1f1 = 1/(x^2 + 1)
+  d2f1 = 0
+  d1f2 = 0
+  d2f2 = y^8 - y^6 - y^4 - y^2 + 1
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 6"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton7 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  complex func sec (complex x)
+     return 1/(cos(x))
+  endfunc
+  complex func ln (complex x)
+     return log(x)/log(e)
+  endfunc
+  complex func asec (complex x)
+     return 1/sec(x)
+  endfunc
+  f1 = tan(x)
+  f2 = 2*y^5/15 + y^3/3 + z
+  d1f1 = sec(x)^2
+  d2f1 = 0
+  d1f2 = 0
+  d2f2 = (2*y^4)/3 + y^2 + 1
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 7"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton8 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  complex func sec (complex x)
+     return 1/(cos(x))
+  endfunc
+  complex func ln (complex x)
+     return log(x)/log(e)
+  endfunc
+  complex func asec (complex x)
+     return 1/sec(x)
+  endfunc
+  f1 = sec(x)
+  f2 = ((50521*y^10)/3628800) + ((277*y^8)/8064) + ((61*y^6)/720) + ((5*y^4)/24) + ((y^2)/2) + 1
+  d1f1 = sec(x)*tan(x)
+  d2f1 = 0
+  d1f2 = 0
+  d2f2 = ((50521*y^9)/362880) + ((277*y^7)/1008) + ((61*y^5)/120) + ((5*y^3)/6) + z
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 8"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+
+2DNewton9 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^2 - y - 1
+  f2 = x - y^2 + 1
+  d1f1 = 2*x
+  d2f1 = -1
+  d1f2 = 1
+  d2f2 = -2*y
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 9"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton10 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^2 + y^2 - 1
+  f2 = x + 2*y^2 - 1
+  d1f1 = 2*x
+  d2f1 = 2*y
+  d1f2 = 1
+  d2f2 = 4*y
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 10"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton11 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = sqrt(y + 1)
+  f2 = sqrt(x + 1)
+  d1f1 = 0
+  d2f1 = 1/(2*sqrt(y + 1))
+  d1f2 = 1/(2*sqrt(x + 1))
+  d2f2 = 0
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 11"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton12 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^8 + 15*y^4 - 16
+  f2 = y^8 + 15*x^4 - 16
+  d1f1 = 8*x^7
+  d2f1 = 60*y^3
+  d1f2 = 15*x^3
+  d2f2 = 8*y^7
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 12"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton13 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^2 + y^2 - 1
+  f2 = (x^2/@a^2) + (y^2/@b^2) - 1
+  d1f1 = 2*x
+  d2f1 = 2*y
+  d1f2 = (2*x)/(@a^2)
+  d2f2 = (2*y)/(@b^2)
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 13"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param a
+    default = (2, 0)
+  endparam
+
+  param b
+    default = (1, 0)
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton14 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^2 - y
+  f2 = y^2 - x
+  d1f1 = 2*x
+  d2f1 = -1
+  d1f2 = -1
+  d2f2 = 2*y
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 14"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton15 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = e^x - 3*y - 1
+  f2 = x^2 + y^2 - 4
+  d1f1 = e^x
+  d2f1 = -3
+  d1f2 = 2*x
+  d2f2 = 2*y
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 15"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton16 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = e^x - y
+  f2 = x*y - e^x
+  d1f1 = e^x
+  d2f1 = -1
+  d1f2 = y - e^x
+  d2f2 = x
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 16"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton17 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = x^2 + y^2 - 2
+  f2 = x*y - 1
+  d1f1 = 2*x
+  d2f1 = 2*y
+  d1f2 = y
+  d2f2 = x
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 17"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+2DNewton18 {
+init:
+  z = pixel
+  x = real(z)
+  y = imag(z)
+  i = sqrt(-1)
+loop:
+  f1 = 3*x^2 - y^2
+  f2 = 3*x*y^2 - 2*x^3 - 1
+  d1f1 = 6*x
+  d2f1 = -2*y
+  d1f2 = 3*y^2-6*x^2
+  d2f2 = 6*x*y
+  xold = x
+  yold = y
+  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
+  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
+  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "2D Newton 18"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param bailout
+    caption = "Bailout value"
+    default = 0.00001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
