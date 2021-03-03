@@ -1,11 +1,33 @@
 Secant3 {
 init:
-  z = #pixel
-  oz = @start
-  fz = fzd = oldz = 0
+  z = pixel
   i = sqrt(-1)
+  x = real(z)
+  y = imag(z)
+  comp = x + y*i
+  rad = sqrt(x^2+y^2)
+  if (x == 0 && y > 0)
+     z = comp
+     theta = pi/2
+  elseif (x == 0)
+     z = comp
+     theta = 3*pi/2
+  else
+     z = comp
+    if (x < 0)
+     theta = atan(y/x)+pi
+    else
+     theta = atan(y/x)
+    endif
+  endif
+  if (x == 0 && y == 0)
+    oz = @start
+    z = 0
+  else
+    oz = @a*rad*cos(theta)+@a*rad*i*sin(theta)
+    z = z
+  endif
 loop:
-  oldz = z
   fzd = oz^3 - 1
   fz = z^3 - 1
   a11 = 1
@@ -21,8 +43,9 @@ loop:
   ainv21 = factor * -a21
   pp1 = ainv22*b1 + ainv11*b2
   pp2 = ainv12*b1 + ainv21*b2
-  z = (pp1*oz) + (pp2*z)
-  oz = oldz
+  zhat = (pp1*oz) + (pp2*z)
+  oz = z
+  z = zhat
 
 bailout:
   |z - oz| >= @bailout
@@ -55,24 +78,47 @@ init:
   z = #pixel
   x = real(z)
   y = imag(z)
-  oz = @start
+  i = sqrt(-1)
+  comp = x + y*i
+  rad = sqrt(x^2+y^2)
+  if (x == 0 && y > 0)
+     z = comp
+     theta = pi/2
+  elseif (x == 0)
+     z = comp
+     theta = 3*pi/2
+  else
+     z = comp
+    if (x < 0)
+     theta = atan(y/x)+pi
+    else
+     theta = atan(y/x)
+    endif
+  endif
+  if (z == 0)
+    ooz = @start1+#pixel
+    oz = @start+#pixel
+    z = 0
+  else
+    ooz = @a*rad*cos(theta)+@a*rad*i*sin(theta)
+    oz = @b*rad*cos(theta)+@b*rad*i*sin(theta)
+    z = comp
+  endif
   ox = real(oz)
   oy = imag(oz)
-  ooz = @start1
   oox = real(ooz)
   ooy = imag(ooz)
-  i = sqrt(-1)
 loop:
   oldoldx = oldx
   oldoldy = oldy
   oldx = x
   oldy = y
   foox = oox^2 - ooy - 1
-  fooy = ooy - oox^2 + 1
+  fooy = oox - ooy^2 + 1
   fox = ox^2 - oy - 1
-  foy = oy - ox^2 + 1
+  foy = ox - oy^2 + 1
   fx = x^2 - y - 1
-  fy = y - x^2 + 1
+  fy = x - y^2 + 1
   a11 = 1
   a12 = 1
   a13 = 1
@@ -108,12 +154,14 @@ loop:
   pp1 = ainv11*b1 + ainv21*b2 + ainv31*b3
   pp2 = ainv12*b1 + ainv22*b2 + ainv32*b3
   pp3 = ainv13*b1 + ainv23*b2 + ainv33*b3
-  x = (pp1*oox) + (pp2*ox) + (pp3*x)
-  y = (pp1*ooy) + (pp2*oy) + (pp3*y)
+  xhat = (pp1*oox) + (pp2*ox) + (pp3*x)
+  yhat = (pp1*ooy) + (pp2*oy) + (pp3*y)
   oox = oldoldx
   ooy = oldoldy
   ox = oldx
   oy = oldy
+  x = xhat
+  y = yhat
 
 bailout:
   |x - ox| >= @bailout || |y - oy| >= @bailout || |fx| >= @bailout || |fy| >= @bailout
@@ -124,14 +172,24 @@ default:
 
   param start
     caption = "Start 1"
-    default = (0, 0)
+    default = (0.000001, 0)
     hint = "Start value for ooz."
   endparam
 
   param start1
     caption = "Start 2"
-    default = (0, 0)
+    default = (0.00001, 0)
     hint = "Start value for oz."
+  endparam
+
+  param a
+    caption = "1st start value"
+    default = (1.001, 0)
+  endparam
+
+  param b
+    caption = "2nd start value"
+    default = (0.999, 0)
   endparam
 
   param relax
@@ -147,51 +205,134 @@ default:
   endparam
 }
 
-2DNewton14 {
+WolfeBittner4 {
 init:
-  z = pixel
+  z = #pixel
   x = real(z)
   y = imag(z)
   i = sqrt(-1)
+  comp = x + y*i
+  rad = sqrt(x^2+y^2)
+  if (x == 0 && y > 0)
+     z = comp
+     theta = pi/2
+  elseif (x == 0)
+     z = comp
+     theta = 3*pi/2
+  else
+     z = comp
+    if (x < 0)
+     theta = atan(y/x)+pi
+    else
+     theta = atan(y/x)
+    endif
+  endif
+  if (z == 0)
+    ooz = @start1+#pixel
+    oz = @start+#pixel
+    z = 0
+  else
+    ooz = abs(z)*@a*exp(i*theta)
+    oz = abs(z)*@b*exp(i*theta)
+    z = z
+  endif
+  ox = real(oz)
+  oy = imag(oz)
+  oox = real(ooz)
+  ooy = imag(ooz)
 loop:
-  f1 = x^2 - y
-  f2 = y^2 - x
-  d1f1 = 2*x
-  d2f1 = -1
-  d1f2 = -1
-  d2f2 = 2*y
-  xold = x
-  yold = y
-  factor = (1 / ((d1f1*d2f2) - (d2f1*d1f2)))
-  x = x - @relax * factor * (d2f2 * f1 + -d2f1 * f2)
-  y = y - @relax * factor * (-d1f2 * f1 + d1f1 * f2)
+  oldoldx = oldx
+  oldoldy = oldy
+  oldx = x
+  oldy = y
+  foox = oox^2 - ooy
+  fooy = ooy^2 - oox
+  fox = ox^2 - oy
+  foy = oy^2 - ox
+  fx = x^2 - y
+  fy = y^2 - x
+  a11 = 1
+  a12 = 1
+  a13 = 1
+  a21 = foox
+  a22 = fox
+  a23 = fx
+  a31 = fooy
+  a32 = foy
+  a33 = fy
+  b1 = 1
+  b2 = 0
+  b3 = 0
+  a1 = a22*a33 - a23*a32
+  a2 = a21*a33 - a23*a31
+  a3 = a21*a32 - a22*a31
+  a4 = a12*a33 - a13*a32
+  a5 = a11*a33 - a13*a31
+  a6 = a11*a32 - a12*a31
+  a7 = a12*a23 - a13*a22
+  a8 = a11*a23 - a13*a21
+  a9 = a11*a22 - a12*a21
+  det = (a11*a1) + (a12*a2) + (a13*a3)
+  factor = 1 / det
+  ainv11 = factor * a1
+  ainv21 = factor * -a4
+  ainv31 = factor * a7
+  ainv12 = factor * -a2
+  ainv22 = factor * a5
+  ainv32 = factor * -a8
+  ainv13 = factor * a3
+  ainv23 = factor * -a6
+  ainv33 = factor * a9
+  pp1 = ainv11*b1 + ainv21*b2 + ainv31*b3
+  pp2 = ainv12*b1 + ainv22*b2 + ainv32*b3
+  pp3 = ainv13*b1 + ainv23*b2 + ainv33*b3
+  xhat = (pp1*oox) + (pp2*ox) + (pp3*x)
+  yhat = (pp1*ooy) + (pp2*oy) + (pp3*y)
+  oox = oldoldx
+  ooy = oldoldy
+  ox = oldx
+  oy = oldy
+  x = xhat
+  y = yhat
+
 bailout:
-  |x - xold| >= @bailout || |y - yold| >= @bailout
+  |x - ox| >= @bailout || |y - oy| >= @bailout || |fx| >= @bailout || |fy| >= @bailout
+
 default:
-  title = "2D Newton 14"
-  helpfile = "Uf*.chm"
-  helptopic = "Html\formulas\standard\newton.html"
-$IFDEF VER50
-  rating = recommended
-$ENDIF
-  maxiter = 100
-  center = (0, 0)
-  param bailout
-    caption = "Bailout value"
-    default = 0.00001
-    min = 0
-$IFDEF VER40
-    exponential = true
-$ENDIF
-    hint = "This parameter defines how soon a convergent orbit bails out while \
-            iterating. Smaller values give more precise results but usually \
-            require more iterations."
+  title = "Wolfe-Bittner Secant (x^2 - y, y^2 - x)"
+  maxiter = 1000
+
+  param a
+    caption = "1st start value"
+    default = (1.001, 0)
+  endparam
+
+  param b
+    caption = "2nd start value"
+    default = (0.999, 0)
+  endparam
+
+  param start
+    caption = "Start 1"
+    default = (0.000001, 0)
+    hint = "Start value for ooz."
+  endparam
+
+  param start1
+    caption = "Start 2"
+    default = (0.00001, 0)
+    hint = "Start value for oz."
   endparam
 
   param relax
-    caption = "Relaxation"
+    caption = "Relaxation factor"
     default = (1, 0)
-    hint = "This can be used to slow down or speed up the convergence of \
-            the formula."
+    hint = "Relaxation factor."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
   endparam
 }
