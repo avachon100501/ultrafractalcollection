@@ -1,33 +1,12 @@
 Secant3 {
 init:
-  z = pixel
+  z = #pixel
+  oz = @start
+  fz = fzd = oldz = 0
   i = sqrt(-1)
-  x = real(z)
-  y = imag(z)
-  comp = x + y*i
-  rad = sqrt(x^2+y^2)
-  if (x == 0 && y > 0)
-     z = comp
-     theta = pi/2
-  elseif (x == 0)
-     z = comp
-     theta = 3*pi/2
-  else
-     z = comp
-    if (x < 0)
-     theta = atan(y/x)+pi
-    else
-     theta = atan(y/x)
-    endif
-  endif
-  if (x == 0 && y == 0)
-    oz = @start
-    z = 0
-  else
-    oz = @a*rad*cos(theta)+@a*rad*i*sin(theta)
-    z = z
-  endif
 loop:
+  complex start
+  oldz = z
   fzd = oz^3 - 1
   fz = z^3 - 1
   a11 = 1
@@ -36,19 +15,17 @@ loop:
   a22 = fz
   b1 = 1
   b2 = 0
-  factor = 1 / (a11*a22 - a12*a21)
-  ainv22 = factor * a22
-  ainv11 = factor * a11
-  ainv12 = factor * -a12
-  ainv21 = factor * -a21
-  pp1 = ainv22*b1 + ainv11*b2
-  pp2 = ainv12*b1 + ainv21*b2
-  zhat = (pp1*oz) + (pp2*z)
-  oz = z
-  z = zhat
+  det = (a11*a22)-(a21*a12)
+  factor = 1 / det
+  ab1 = a22*b1 + (-a12)*b2
+  ab2 = (-a21)*b1 + a12*b2
+  pp1 = factor * ab1
+  pp2 = factor * ab2
+  z = (pp1*oz) + (pp2*z)
+  oz = oldz
 
 bailout:
-  |z - oz| >= @bailout
+  |z - oz| >= @bailout || |fz| >= @bailout
 
 default:
   title = "Secant 3"
@@ -58,12 +35,6 @@ default:
     caption = "Start"
     default = (0, 0)
     hint = "Start value for oz."
-  endparam
-  
-  param relax
-    caption = "Relaxation factor"
-    default = (1, 0)
-    hint = "Relaxation factor."
   endparam
 
   param bailout
@@ -76,42 +47,21 @@ default:
 WolfeBittner3 {
 init:
   z = #pixel
+  oz = @start
+  ooz = @start1
+  i = sqrt(-1)
   x = real(z)
   y = imag(z)
-  i = sqrt(-1)
-  comp = x + y*i
-  rad = sqrt(x^2+y^2)
-  if (x == 0 && y > 0)
-     z = comp
-     theta = pi/2
-  elseif (x == 0)
-     z = comp
-     theta = 3*pi/2
-  else
-     z = comp
-    if (x < 0)
-     theta = atan(y/x)+pi
-    else
-     theta = atan(y/x)
-    endif
-  endif
-  if (z == 0)
-    ooz = @start1+#pixel
-    oz = @start+#pixel
-    z = 0
-  else
-    ooz = @a*rad*cos(theta)+@a*rad*i*sin(theta)
-    oz = @b*rad*cos(theta)+@b*rad*i*sin(theta)
-    z = comp
-  endif
   ox = real(oz)
   oy = imag(oz)
   oox = real(ooz)
   ooy = imag(ooz)
 loop:
+  complex start
+  complex start1
   oldoldx = oldx
-  oldoldy = oldy
   oldx = x
+  oldoldy = oldy
   oldy = y
   foox = oox^2 - ooy - 1
   fooy = oox - ooy^2 + 1
@@ -140,28 +90,20 @@ loop:
   a7 = a12*a23 - a13*a22
   a8 = a11*a23 - a13*a21
   a9 = a11*a22 - a12*a21
-  det = (a11*a1) + (a12*a2) + (a13*a3)
+  det = (a11*a1) + (a12*(-a2)) + (a13*a3)
   factor = 1 / det
-  ainv11 = factor * a1
-  ainv21 = factor * -a4
-  ainv31 = factor * a7
-  ainv12 = factor * -a2
-  ainv22 = factor * a5
-  ainv32 = factor * -a8
-  ainv13 = factor * a3
-  ainv23 = factor * -a6
-  ainv33 = factor * a9
-  pp1 = ainv11*b1 + ainv21*b2 + ainv31*b3
-  pp2 = ainv12*b1 + ainv22*b2 + ainv32*b3
-  pp3 = ainv13*b1 + ainv23*b2 + ainv33*b3
-  xhat = (pp1*oox) + (pp2*ox) + (pp3*x)
-  yhat = (pp1*ooy) + (pp2*oy) + (pp3*y)
+  ab1 = (a1*b1 + (-a4)*b2 + a7*b3)
+  ab2 = ((-a2)*b1 + a5*b2 + (-a8)*b3)
+  ab3 = (a3*b1 + (-a6)*b2 + a9*b3)
+  pp1 = factor*ab1
+  pp2 = factor*ab2
+  pp3 = factor*ab3
+  x = (pp1*oox) + (pp2*ox) + (pp3*x)
+  y = (pp1*ooy) + (pp2*oy) + (pp3*y)
   oox = oldoldx
   ooy = oldoldy
   ox = oldx
   oy = oldy
-  x = xhat
-  y = yhat
 
 bailout:
   |x - ox| >= @bailout || |y - oy| >= @bailout || |fx| >= @bailout || |fy| >= @bailout
@@ -182,22 +124,6 @@ default:
     hint = "Start value for oz."
   endparam
 
-  param a
-    caption = "1st start value"
-    default = (1.001, 0)
-  endparam
-
-  param b
-    caption = "2nd start value"
-    default = (0.999, 0)
-  endparam
-
-  param relax
-    caption = "Relaxation factor"
-    default = (1, 0)
-    hint = "Relaxation factor."
-  endparam
-
   param bailout
     caption = "Bailout Value"
     default = 1.0e-20
@@ -208,49 +134,28 @@ default:
 WolfeBittner4 {
 init:
   z = #pixel
+  oz = @start
+  ooz = @start1
+  i = sqrt(-1)
   x = real(z)
   y = imag(z)
-  i = sqrt(-1)
-  comp = x + y*i
-  rad = sqrt(x^2+y^2)
-  if (x == 0 && y > 0)
-     z = comp
-     theta = pi/2
-  elseif (x == 0)
-     z = comp
-     theta = 3*pi/2
-  else
-     z = comp
-    if (x < 0)
-     theta = atan(y/x)+pi
-    else
-     theta = atan(y/x)
-    endif
-  endif
-  if (z == 0)
-    ooz = @start1+#pixel
-    oz = @start+#pixel
-    z = 0
-  else
-    ooz = abs(z)*@a*exp(i*theta)
-    oz = abs(z)*@b*exp(i*theta)
-    z = z
-  endif
   ox = real(oz)
   oy = imag(oz)
   oox = real(ooz)
   ooy = imag(ooz)
 loop:
+  complex start
+  complex start1
   oldoldx = oldx
-  oldoldy = oldy
   oldx = x
+  oldoldy = oldy
   oldy = y
-  foox = oox^2 - ooy
-  fooy = ooy^2 - oox
-  fox = ox^2 - oy
-  foy = oy^2 - ox
-  fx = x^2 - y
-  fy = y^2 - x
+  foox = oox^2 + ooy^2 - 1
+  fooy = oox + 2*ooy^2 - 1
+  fox = ox^2 + oy^2 - 1
+  foy = ox + 2*oy^2 - 1
+  fx = x^2 + y^2 - 1
+  fy = x + 2*y^2 - 1
   a11 = 1
   a12 = 1
   a13 = 1
@@ -272,45 +177,27 @@ loop:
   a7 = a12*a23 - a13*a22
   a8 = a11*a23 - a13*a21
   a9 = a11*a22 - a12*a21
-  det = (a11*a1) + (a12*a2) + (a13*a3)
+  det = (a11*a1) + (a12*(-a2)) + (a13*a3)
   factor = 1 / det
-  ainv11 = factor * a1
-  ainv21 = factor * -a4
-  ainv31 = factor * a7
-  ainv12 = factor * -a2
-  ainv22 = factor * a5
-  ainv32 = factor * -a8
-  ainv13 = factor * a3
-  ainv23 = factor * -a6
-  ainv33 = factor * a9
-  pp1 = ainv11*b1 + ainv21*b2 + ainv31*b3
-  pp2 = ainv12*b1 + ainv22*b2 + ainv32*b3
-  pp3 = ainv13*b1 + ainv23*b2 + ainv33*b3
-  xhat = (pp1*oox) + (pp2*ox) + (pp3*x)
-  yhat = (pp1*ooy) + (pp2*oy) + (pp3*y)
+  ab1 = (a1*b1 + (-a4)*b2 + a7*b3)
+  ab2 = ((-a2)*b1 + a5*b2 + (-a8)*b3)
+  ab3 = (a3*b1 + (-a6)*b2 + a9*b3)
+  pp1 = factor*ab1
+  pp2 = factor*ab2
+  pp3 = factor*ab3
+  x =  (pp1*oox) + (pp2*ox) + (pp3*x)
+  y = (pp1*ooy) + (pp2*oy) + (pp3*y)
   oox = oldoldx
   ooy = oldoldy
   ox = oldx
   oy = oldy
-  x = xhat
-  y = yhat
 
 bailout:
   |x - ox| >= @bailout || |y - oy| >= @bailout || |fx| >= @bailout || |fy| >= @bailout
 
 default:
-  title = "Wolfe-Bittner Secant (x^2 - y, y^2 - x)"
+  title = "Wolfe-Bittner Secant (x^2 + y^2 - 1, x + 2*y^2 - 1)"
   maxiter = 1000
-
-  param a
-    caption = "1st start value"
-    default = (1.001, 0)
-  endparam
-
-  param b
-    caption = "2nd start value"
-    default = (0.999, 0)
-  endparam
 
   param start
     caption = "Start 1"
@@ -322,12 +209,6 @@ default:
     caption = "Start 2"
     default = (0.00001, 0)
     hint = "Start value for oz."
-  endparam
-
-  param relax
-    caption = "Relaxation factor"
-    default = (1, 0)
-    hint = "Relaxation factor."
   endparam
 
   param bailout
