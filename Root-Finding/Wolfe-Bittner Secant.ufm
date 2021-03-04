@@ -44,18 +44,64 @@ default:
   endparam
 }
 
-WolfeBittner3 {
+Secant2 {
 init:
   z = #pixel
   oz = @start
-  ooz = @start1
+  fz = fzd = oldz = 0
+  i = sqrt(-1)
+loop:
+  complex start
+  oldz = z
+  fzd = oz^2 - oz - 1
+  fz = z^2 - z - 1
+  a11 = 1
+  a12 = 1
+  a21 = fzd
+  a22 = fz
+  b1 = 1
+  b2 = 0
+  det = (a11*a22)-(a21*a12)
+  factor = 1 / det
+  ab1 = a22*b1 + (-a12)*b2
+  ab2 = (-a21)*b1 + a12*b2
+  pp1 = factor * ab1
+  pp2 = factor * ab2
+  z = (pp1*oz) + (pp2*z)
+  oz = oldz
+
+bailout:
+  |z - oz| >= @bailout || |fz| >= @bailout
+
+default:
+  title = "Secant (z^2 - z - 1)"
+  maxiter = 1000
+
+  param start
+    caption = "Start"
+    default = (0, 0)
+    hint = "Start value for oz."
+  endparam
+
+  param bailout
+    caption = "Bailout Value"
+    default = 1.0e-20
+    hint = "The bailout value."
+  endparam
+}
+
+WolfeBittner3 {
+init:
+  z = #pixel
+  oz = @start1
+  ooz = @start
   i = sqrt(-1)
   x = real(z)
   y = imag(z)
-  ox = real(oz)
-  oy = imag(oz)
-  oox = real(ooz)
-  ooy = imag(ooz)
+  ox = x - real(oz)
+  oy = y + imag(oz)
+  oox = x + real(ooz)
+  ooy = y + imag(ooz)
 loop:
   complex start
   complex start1
@@ -114,13 +160,13 @@ default:
 
   param start
     caption = "Start 1"
-    default = (0.000001, 0)
+    default = (0.01, -0.015)
     hint = "Start value for ooz."
   endparam
 
   param start1
     caption = "Start 2"
-    default = (0.00001, 0)
+    default = (-0.015, 0.05)
     hint = "Start value for oz."
   endparam
 
@@ -134,15 +180,15 @@ default:
 WolfeBittner4 {
 init:
   z = #pixel
-  oz = @start
-  ooz = @start1
+  oz = @start1
+  ooz = @start
   i = sqrt(-1)
   x = real(z)
   y = imag(z)
-  ox = real(oz)
-  oy = imag(oz)
-  oox = real(ooz)
-  ooy = imag(ooz)
+  ox = x + real(oz)
+  oy = y + imag(oz)
+  oox = x + real(ooz)
+  ooy = y + imag(ooz)
 loop:
   complex start
   complex start1
@@ -201,13 +247,13 @@ default:
 
   param start
     caption = "Start 1"
-    default = (0.000001, 0)
+    default = (0.01, -0.015)
     hint = "Start value for ooz."
   endparam
 
   param start1
     caption = "Start 2"
-    default = (0.00001, 0)
+    default = (-0.015, 0.05)
     hint = "Start value for oz."
   endparam
 
