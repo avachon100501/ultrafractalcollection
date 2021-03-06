@@ -1,0 +1,170 @@
+Broyden1 {
+init:
+  z = pixel
+  oz = p1
+  x = real(z)
+  ox = real(oz)
+  y = imag(z)
+  oy = imag(oz)
+  i = sqrt(-1)
+loop:
+  complex p1
+  fox = ox^2 - oy - 1
+  foy = ox - oy^2 + 1
+  fx = x^2 - y - 1
+  fy = x - y^2 + 1
+  d1fx = 2*x
+  d2fx = -1
+  d1fy = 1
+  d2fy = -2*y
+  dx = x - ox
+  dy = y - oy
+  dfx = fx - fox
+  dfy = fy - foy
+  ox = xold
+  oy = yold
+  xold = x
+  yold = y
+  dfdx = d1fx*dx + d2fx*dy
+  dfdy = d1fy*dx + d2fy*dy
+  norm2 = sqrt(x^2 + y^2)^2
+  dfxmdfx = dfx - dfdx
+  dfxmdfy = dfy - dfdy
+  dfxmdfxnorm2 = dfxmdfx/norm2
+  dfxmdfynorm2 = dfxmdfy/norm2
+  a1 = dfxmdfxnorm2*dx
+  a2 = dfxmdfxnorm2*dy
+  a3 = dfxmdfynorm2*dx
+  a4 = dfxmdfynorm2*dy
+  aa1 = d1fx + a1
+  aa2 = d2fx + a2
+  aa3 = d1fy + a3
+  aa4 = d2fy + a4
+  d1fx = aa1
+  d2fx = aa2
+  d1fy = aa3
+  d2fy = aa4
+  factor = 1 / (d1fx*d2fy - d2fx*d1fy)
+  x = x - @relax * factor * (d2fy * fx + (-d2fx) * fy)
+  y = y - @relax * factor * ((-d1fy) * fx + d1fx * fy)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "Broyden 1"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param p1
+    caption = "Start"
+    default = (0, 0)
+    hint = "Start value for oz."
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.00000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
+
+
+Broyden2 {
+init:
+  z = pixel
+  oz = p1
+  x = real(z)
+  ox = real(oz)
+  y = imag(z)
+  oy = imag(oz)
+  i = sqrt(-1)
+loop:
+  complex p1
+  fox = ox^2 + oy^2 - 1
+  foy = ox + 2*oy^2 - 1
+  fx = x^2 + y^2 - 1
+  fy = x + 2*y^2 - 1
+  d1fx = 2*x
+  d2fx = 2*y
+  d1fy = 1
+  d2fy = 4*y
+  dx = x - ox
+  dy = y - oy
+  dfx = fx - fox
+  dfy = fy - foy
+  ox = xold
+  oy = yold
+  xold = x
+  yold = y
+  dfdx = d1fx*dx + d2fx*dy
+  dfdy = d1fy*dx + d2fy*dy
+  norm2 = sqrt(x^2 + y^2)^2
+  dfxmdfx = dfx - dfdx
+  dfxmdfy = dfy - dfdy
+  dfxmdfxnorm2 = dfxmdfx/norm2
+  dfxmdfynorm2 = dfxmdfy/norm2
+  a1 = dfxmdfxnorm2*dx
+  a2 = dfxmdfxnorm2*dy
+  a3 = dfxmdfynorm2*dx
+  a4 = dfxmdfynorm2*dy
+  aa1 = d1fx + a1
+  aa2 = d2fx + a2
+  aa3 = d1fy + a3
+  aa4 = d2fy + a4
+  d1fx = aa1
+  d2fx = aa2
+  d1fy = aa3
+  d2fy = aa4
+  factor = 1 / (d1fx*d2fy - d2fx*d1fy)
+  x = x - @relax * factor * (d2fy * fx + (-d2fx) * fy)
+  y = y - @relax * factor * ((-d1fy) * fx + d1fx * fy)
+bailout:
+  |x - xold| >= @bailout || |y - yold| >= @bailout
+default:
+  title = "Broyden 2"
+  helpfile = "Uf*.chm"
+  helptopic = "Html\formulas\standard\newton.html"
+$IFDEF VER50
+  rating = recommended
+$ENDIF
+  maxiter = 100
+  center = (0, 0)
+  param p1
+    caption = "Start"
+    default = (0, 0)
+    hint = "Start value for oz."
+  endparam
+  param bailout
+    caption = "Bailout value"
+    default = 0.00000001
+    min = 0
+$IFDEF VER40
+    exponential = true
+$ENDIF
+    hint = "This parameter defines how soon a convergent orbit bails out while \
+            iterating. Smaller values give more precise results but usually \
+            require more iterations."
+  endparam
+
+  param relax
+    caption = "Relaxation"
+    default = (1, 0)
+    hint = "This can be used to slow down or speed up the convergence of \
+            the formula."
+  endparam
+}
